@@ -1,18 +1,17 @@
 <template>
-    <div class="flex w-full">
-      <div class="pr-[50px] shrink-1">
-        <div v-for="(post, index) in posts" :key="index" class="grid grid-col">     
-            <!-- {{ post.category_id1.name }}
-            {{ post.category_id2.name }}        -->
-          <PostCardList :post="post" 
-          :class="[index !== posts.length -1 ? 'mb-[110px]' : 'mb-[42px]']"
-          />
-        </div>
-      </div>
-      <div class="pl-[50px] border-own shrink-0 w-[300px]">
-        <div class="w-full h-12 bg-blue-100"></div>
-      </div>
+  <NuxtLayout name="list">
+    <template #content>
+      <div v-for="(post, index) in posts" :key="index" class="grid grid-col">   
+      <PostCardList :post="post" 
+      :class="[index !== posts.length -1 ? 'mb-[110px]' : 'mb-[42px]']"
+      />
     </div>
+      </template>
+      <template #sidebar>
+        <div class="w-full h-12 bg-blue-100"></div>
+      </template>
+  </NuxtLayout>
+
   </template>
   
   <script setup lang="ts">
@@ -21,6 +20,7 @@
     .from("posts")
     .select(
       `
+      id,
        title,
        created_at,
          image,

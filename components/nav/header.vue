@@ -10,8 +10,10 @@
   @logout="isLogout()"
 />
   <div class="flex place-items-center mx-16 my-6  h-[52px] flex-row  justify-between">
-    <p class="flex title shrink-0">Nuxt3 Blog</p>
-    <div class="flex w-full max-w-[1000px] mx-[80px] shrink"  v-if="router.currentRoute.value.name !== 'post-nowy'">
+    <NuxtLink to="/">
+      <p class="flex title shrink-0">Nuxt3 Blog</p>
+    </NuxtLink>
+      <div class="flex w-full max-w-[1000px] mx-[80px] shrink"  v-if="router.currentRoute.value.name !== 'post-nowy'">
         <NavSearch/>
     </div>
     <div class="flex shrink-0">

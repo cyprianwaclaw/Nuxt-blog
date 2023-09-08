@@ -14,12 +14,12 @@
         :size="iconSize"
         ref="icon"
       />
-      <Icon
+      <!-- <Icon
       v-else
       name="ph:arrow-up-right"
       :color="[props.notHover ? 'white': '#C5C5C5']"
       :size="iconSize"
-    />
+    /> -->
     </div>
   </template>
   

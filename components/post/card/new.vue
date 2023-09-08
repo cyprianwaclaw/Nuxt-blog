@@ -2,10 +2,10 @@
     <div class="cursor-default"
     :style="{ width: props.elementWidth + 'px' }"
     >
-      <NuxtImg :src="post.image" class="image" :style="{ height: props.imageHeight + 'px' }" />
+      <img :src="post.image" class="image" :style="{ height: props.imageHeight + 'px' }" />
       <div class="flex justify-between" :style="{ marginTop: props.authorTop + 'px' }">
         <div class="flex gap-1 items-center">
-          <NuxtImg
+          <img
             v-if="post.profiles.avatar_url"
             :src="post.profiles.avatar_url"
             class="avatar"

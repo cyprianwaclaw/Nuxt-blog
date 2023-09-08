@@ -36,7 +36,7 @@ const isLoading = ref(true);
 let data:any = [];
 let profiles:any = [];
 
-// onMounted(async () => {
+onMounted(async () => {
   // Pobieranie danych followers
   const followersResponse = await supabase
     .from("followers")
@@ -56,7 +56,7 @@ let profiles:any = [];
 
   // Ustawienie flagi na zakończenie ładowania
   isLoading.value = false;
-// });
+});
 </script>
 
 <style scoped lang="scss">

@@ -3,7 +3,7 @@
       <div class="flex flex-col shrink-1 pr-[50px]">
         <div class="flex place-itenms-content justify-between mb-[6px]">
           <div class="flex gap-[6px] place-items-center">
-            <NuxtImg
+            <img
               v-if="post.profiles.avatar_url"
               :src="post.profiles.avatar_url"
               class="avatar"
@@ -16,7 +16,7 @@
               color="#BFCBEE"
               size="25"
             />
-            <NuxtLink :to="`/author/${post.profiles.full_name}`">
+            <NuxtLink :to="`/autor/${post.profiles.full_name}`">
               <p class="text-[15px]">{{ post.profiles.full_name }}</p>
             </NuxtLink>
           </div>
@@ -28,7 +28,7 @@
             <Icon name="ph:bookmark-simple" size="24"/>
           </div>
         </div>
-        <NuxtLink class="cursor-pointer">
+        <NuxtLink :to="`/post/${post.id}`" class="cursor-pointer">
           <p class="leading-6 font-medium text-[21px] hover:underline">
             {{ post.title }}
           </p>
@@ -49,7 +49,7 @@
         </div>
       </div>
       <div class="w-[250px] h-[180px] flex shrink-0">
-        <NuxtImg
+        <img
           :src="post.image"
           class="image"
           :style="{ height: props.imageHeight + 'px' }"
