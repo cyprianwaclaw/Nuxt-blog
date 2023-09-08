@@ -18,7 +18,7 @@
           <div
             class="bg-[#E9ECF2] w-full h-full place-items-center flex justify-center border-transparent rounded-l-[24px]"
           >
-            <NuxtImg src="@/assets/file/login.png" />
+            <img src="/assets/login.png" alt="Login Image" />
           </div>
           <div class="px-[26px] py-[24px] h-full pt-[64px]">
             <Transition :name="animationName" mode="out-in">
