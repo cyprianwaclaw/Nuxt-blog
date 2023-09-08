@@ -1,7 +1,13 @@
 <template>
   <div v-if="isLoading">Ładowanie</div>
   <div class="star-rating" v-else>
+    <div v-if="!user" class="star-rating">
+    <div v-for="star in 5" :key="star">
+      <Icon name="ph:bookmark-simple-duotone" :size="23" class="star-disabled"/>
+    </div>
+    </div>
     <div
+    v-else
       v-for="star in 5"
       :key="star"
       @mouseover="highlightStars(star)"
@@ -21,10 +27,8 @@
         }"
       />
     </div>
+    <button @click="remove()" v-if="selectedRating">usun</button>
   </div>
-  {{ rating }}
-
-  <button @click="remove()">usun</button>
 </template>
 
 <script setup>
