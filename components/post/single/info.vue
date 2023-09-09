@@ -7,9 +7,10 @@
             </div>
             <div class="flex place-items-center gap-[3px]">
                 <Icon name="ph:chat-circle-dots" size="21"/>
-              <p class="text-[15px]">{{ post.time_read }} </p>
+              <p class="text-[15px]">{{ post?.time_read }} </p>
             </div>
-            <Icon name="ph:bookmark-simple" size="21"/>
+            <ButtonsSaved/>
+            <!-- <Icon name="ph:bookmark-simple" size="21"/> -->
           </div>
 
           <div class="flex gray place-items-center gap-[16px]">

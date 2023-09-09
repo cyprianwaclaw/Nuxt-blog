@@ -2,12 +2,12 @@
   <div v-if="isLoading">Ładowanie</div>
   <div class="star-rating" v-else>
     <div v-if="!user" class="star-rating">
-    <div v-for="star in 5" :key="star">
-      <Icon name="ph:bookmark-simple-duotone" :size="23" class="star-disabled"/>
-    </div>
+      <div v-for="star in 5" :key="star">
+        <Icon name="ph:bookmark-simple-duotone" :size="23" class="hover:cursor-pointer" />
+      </div>
     </div>
     <div
-    v-else
+      v-else
       v-for="star in 5"
       :key="star"
       @mouseover="highlightStars(star)"
@@ -68,10 +68,7 @@ const toggleRating = async (rating) => {
   if (selectedRating.value === 0) {
     selectedRating.value = rating;
 
-    const { data, error } = await supabase
-    .from("ratings")
-    .insert(insertData)
-
+    const { data, error } = await supabase.from("ratings").insert(insertData);
   }
 };
 
@@ -83,7 +80,7 @@ const resetStars = () => {
   hoverRating.value = 0;
 };
 
-const remove = async() => {
+const remove = async () => {
   selectedRating.value = 0;
   hoverRating.value = 0;
 
@@ -91,7 +88,7 @@ const remove = async() => {
     .from("ratings")
     .delete()
     .eq("user_id", user?.value?.id)
-    .eq("post_id", route?.currentRoute.value?.params?.name)
+    .eq("post_id", route?.currentRoute.value?.params?.name);
 };
 </script>
 

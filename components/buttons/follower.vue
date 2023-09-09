@@ -64,7 +64,7 @@
       .from("followers")
       .delete()
       .eq("user_followed_id", user.value.id)
-      .eq("user_followers_id", item);
+      .eq("user_followers_id", item)
     console.log(item);
   };
   </script>
