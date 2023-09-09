@@ -5,6 +5,12 @@
   status="success"
   @close="isModal()"
 />
+<ModalConfirmation
+:modalActive="open2"
+des="Usunięto z zapisanych"
+status="error"
+@close="isModal2()"
+/>
   <div v-if="isLoading">ładowanie</div>
   <div v-else>
     <Icon
@@ -27,6 +33,7 @@ const user = useSupabaseUser();
 const route = useRouter();
 const supabase = useSupabaseClient();
 const open = ref(false);
+const open2 = ref(false);
 const savedPost = ref();
 const hoverIcon = ref(false);
 const isLoading = ref(true);
@@ -36,6 +43,13 @@ const isModal = () => {
 
   setTimeout(() => {
     open.value = false;
+  }, 1100);
+};
+const isModal2 = () => {
+  open2.value = true;
+
+  setTimeout(() => {
+    open2.value = false;
   }, 1100);
 };
 const fetchData = async () => {
@@ -64,6 +78,7 @@ const toggleSavedPost = async () => {
   if (user.value) {
     if (savedPost.value === true) {
       savedPost.value = false;
+      isModal2();
       const { data, error } = await supabase
         .from("saved_posts")
         .delete()

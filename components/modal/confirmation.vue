@@ -7,12 +7,17 @@
         >
           <div 
           class="modal-view-update w-[400px]" 
+          :class="[
+            props.status==='success' ? 'alert-green' : '',
+            props.status==='error' ? 'alert-red' : '',
+            props.status==='alert' ? 'alert-yellow' : '',          
+          ]"
           v-if="props.modalActive">
           <div class="flex place-items-center gap-[12px]">
               <div class="">
-                  <Icon v-if="props.status=='error'" name="ph:x-circle-light" size="5"/>
+                  <Icon v-if="props.status=='error'" name="prime:times-circle" size="37" color="black"/>
                   <Icon v-if="props.status=='success'" name="prime:check-circle"  size="37" color="black"/>
-                  <Icon v-if="props.status=='alert'" name="ph:warning-circle-light"  size="75"/>
+                  <Icon v-if="props.status=='alert'" name="prime:exclamation-circle"  size="37" color="black"/>
                 </div>
                 <p class="text-black text-[17x]">{{ props.des }}</p>
             </div>
@@ -65,7 +70,6 @@
   }
 
     .modal-view-update {
-        background: #96F3C6;
       border: solid transparent;
       border-radius: 12px;
       position: absolute;
@@ -81,5 +85,13 @@
         width: 100%;
         height: 100vh;
     }
-
+.alert-green{
+    background: #96F3C6;
+}
+.alert-red{
+    background: #FFB1A9;
+}
+.alert-yellow{
+    background: #FCE38E;
+}
   </style>
