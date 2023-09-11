@@ -1,6 +1,7 @@
 <template>
     <div class="w-full flex justify-between px-[15px] py-[14px] border-own">
         <div class="flex gray place-items-center gap-[16px] place-items-center">
+          <!-- <ButtonsSaved :id="postId"/> -->
             <div class="flex place-items-center gap-[3px] cursor-pointer">
                 <Icon name="ph:eye" size="21"/>
               <p class="text-[15px]"> 12</p>
@@ -9,7 +10,6 @@
                 <Icon name="ph:chat-circle-dots" size="21"/>
               <p class="text-[15px]">{{ post?.time_read }} </p>
             </div>
-            <ButtonsSaved/>
             <!-- <Icon name="ph:bookmark-simple" size="21"/> -->
           </div>
 
@@ -22,15 +22,14 @@
 </template>
 
 <script setup lang="ts">
-import { object } from "yup";
 
+const route = useRouter() as any;
 const props = defineProps({
     post: {
         type:Object,
     }
 })
-
-const iconStar = [{}]
+const postId = route?.currentRoute.value.params.name as number
 </script>
   
 <style scoped lang="scss">

@@ -6,7 +6,6 @@ export const sliceText=(text:any, number:number)=>{
     }
 }
 
-
 export const calculateElapsedTime = (startDate: string): string => {
     const currentDate = new Date();
     const startDateObj = new Date(startDate);
@@ -31,3 +30,21 @@ export const calculateElapsedTime = (startDate: string): string => {
       return `przed chwilą`;
     }
   };
+
+  export const changeRouteName = (name: string) => {
+    name = name.replace(/ /g, '-');
+    name = name
+      .replace(/ł/g, 'l')
+      .replace(/ą/g, 'a')
+      .replace(/ę/g, 'e')
+      .replace(/ć/g, 'c')
+      .replace(/ń/g, 'n')
+      .replace(/ó/g, 'o')
+      .replace(/ś/g, 's')
+      .replace(/ź/g, 'z')
+      .replace(/ż/g, 'z');
+  
+    let toLower = name.toLowerCase();
+    return toLower;
+  }
+  

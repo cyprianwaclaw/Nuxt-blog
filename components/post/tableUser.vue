@@ -8,7 +8,7 @@
       >
         <div class="flex flex-row place-items-center">
           <div class="flex" v-if="profil.avatar_url">
-            <NuxtImg :src="profil.avatar_url" />
+            <img :src="profil.avatar_url" />
           </div>
           <Icon
             name="carbon:user-avatar-filled"
@@ -22,7 +22,7 @@
             <p class="text-[17px] font-normal -mt-2 cursor-pointer">{{ sliceText(profil.full_name, 16) }}</p>
           </div>
           </div>
-          <ButtonsFollower :id="profil.id" :array="data" />
+          <ButtonsFollower :id="profil.id" />
       </div>
     </div>
   </div>
@@ -30,18 +30,18 @@
 
 <script setup lang="ts">
 import { ref, onMounted } from "vue";
-const user = useSupabaseUser();
+// const user = useSupabaseUser();
 const supabase = useSupabaseClient();
 const isLoading = ref(true);
-let data:any = [];
+// let data:any = [];
 let profiles:any = [];
 
 onMounted(async () => {
   // Pobieranie danych followers
-  const followersResponse = await supabase
-    .from("followers")
-    .select("user_followed_id, user_followers_id")
-    .eq("user_followed_id", user?.value?.id);
+  // const followersResponse = await supabase
+  //   .from("followers")
+  //   .select("user_followed_id, user_followers_id")
+  //   .eq("user_followed_id", user?.value?.id);
 
   // Pobieranie danych profili
   const profilesResponse = (await supabase
@@ -51,7 +51,7 @@ onMounted(async () => {
     .order("number_article", { ascending: false })) as any;
 
   // Przypisanie danych
-  data = followersResponse.data || [];
+  // data = followersResponse.data || [];
   profiles = profilesResponse.data || [];
 
   // Ustawienie flagi na zakończenie ładowania

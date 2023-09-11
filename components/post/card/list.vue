@@ -25,7 +25,7 @@
                 <Icon name="ph:chat-circle-dots" size="24"/>
               <p class="text-[15px]">{{ post.time_read }} </p>
             </div>
-            <Icon name="ph:bookmark-simple" size="24"/>
+            <ButtonsSaved :id="post.id" :size="23"/>
           </div>
         </div>
         <NuxtLink :to="`/post/${post.id}`" class="cursor-pointer">
@@ -38,8 +38,8 @@
         </p>
         <div class="flex justify-between mt-[9px]">
           <div class="flex gap-[14px]">
-            <LinkCategory :name="post.category_id1.name" :link="post.category_id1.name" />
-            <LinkCategory :name="post.category_id2.name" :link="post.category_id2.name" />
+            <LinkCategory :name="post.category_id1.name" :link="post.category_id1.id" />
+            <LinkCategory :name="post.category_id2.name" :link="post.category_id2.id" />
           </div>
           <div class="flex gray place-items-center gap-[6px]">
             <p class="text-[15px]">{{ post.time_read }} min</p>

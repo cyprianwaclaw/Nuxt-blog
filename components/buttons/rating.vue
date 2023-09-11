@@ -1,9 +1,15 @@
 <template>
+  <ModalConfirmation
+    :modalActive="open"
+    des="Przesłano Twoją ocenę!"
+    status="success"
+    @close="isModal()"
+  />
   <div v-if="isLoading">Ładowanie</div>
   <div class="star-rating" v-else>
     <div v-if="!user" class="star-rating">
       <div v-for="star in 5" :key="star">
-        <Icon name="ph:bookmark-simple-duotone" :size="23" class="hover:cursor-pointer" />
+        <Icon name="ph:star" :size="23" class="hover:cursor-pointer" />
       </div>
     </div>
     <div
@@ -17,9 +23,7 @@
       :class="{ 'star-disabled': selectedRating > 0 }"
     >
       <Icon
-        :name="
-          star <= selectedRating ? 'ph:bookmark-simple' : 'ph:bookmark-simple-duotone'
-        "
+        :name="star <= selectedRating ? 'ph:star-fill' : 'ph:star'"
         :size="21"
         :class="{
           'star-highlighted': star <= hoverRating || star <= selectedRating,
@@ -35,10 +39,19 @@
 const user = useSupabaseUser();
 const route = useRouter();
 const supabase = useSupabaseClient();
+const open = ref(false);
 
 let selectedRating = ref(0);
 const hoverRating = ref(0);
 const isLoading = ref(true);
+
+const isModal = () => {
+  open.value = true;
+
+  setTimeout(() => {
+    open.value = false;
+  }, 1200);
+};
 
 const fetchData = async () => {
   const { data, error } = await supabase
@@ -67,7 +80,7 @@ const toggleRating = async (rating) => {
   ];
   if (selectedRating.value === 0) {
     selectedRating.value = rating;
-
+    isModal();
     const { data, error } = await supabase.from("ratings").insert(insertData);
   }
 };
@@ -105,11 +118,11 @@ const remove = async () => {
 
 .star-highlighted,
 .star-selected {
-  color: green;
+  color: #ffc62e;
 }
 
 .star-selected {
-  color: green;
+  color: #ffc62e;
 }
 
 .star-disabled {

@@ -18,8 +18,8 @@ status="error"
       @mouseout="hoverSaved"
       @click="toggleSavedPost"
       :name="savedPost ? 'ph:bookmark-simple-fill' : 'ph:bookmark-simple'"
-      :size="24"
-      class="cursor-pointer"
+      :size="props.size"
+      class="cursor-pointer text-[#C5C5C5]"
       :class="{
         'saved-hover': hoverIcon,
         'saved-selected': savedPost,
@@ -30,37 +30,48 @@ status="error"
 
 <script setup>
 const user = useSupabaseUser();
-const route = useRouter();
 const supabase = useSupabaseClient();
-const open = ref(false);
-const open2 = ref(false);
+
+const props = defineProps({
+  id:{
+    type:Number,
+    required: true
+  },
+  size:{
+    type:Number,
+    required: true
+  }
+})
+
 const savedPost = ref();
 const hoverIcon = ref(false);
 const isLoading = ref(true);
 
+const open = ref(false);
+const open2 = ref(false);
 const isModal = () => {
   open.value = true;
 
   setTimeout(() => {
     open.value = false;
-  }, 1100);
+  }, 1200);
 };
 const isModal2 = () => {
   open2.value = true;
 
   setTimeout(() => {
     open2.value = false;
-  }, 1100);
+  }, 1200);
 };
 const fetchData = async () => {
   const { data, error } = await supabase
     .from("saved_posts")
     .select("*")
     .eq("user_id", user?.value?.id)
-    .eq("post_id", route?.currentRoute.value?.params?.name)
+    .eq("post_id", props.id)
     .single();
 
-  savedPost.value = data;
+  savedPost.value = data ? true : false;
   isLoading.value = false;
 };
 
@@ -72,7 +83,7 @@ const toggleSavedPost = async () => {
   const insertData = [
     {
       user_id: user?.value?.id,
-      post_id: route?.currentRoute.value?.params?.name,
+      post_id: props.id,
     },
   ];
   if (user.value) {
@@ -83,7 +94,7 @@ const toggleSavedPost = async () => {
         .from("saved_posts")
         .delete()
         .eq("user_id", user?.value?.id)
-        .eq("post_id", route?.currentRoute.value?.params?.name);
+        .eq("post_id", props.id);
       hoverIcon.value = false;
     } else {
       isLoading.value = true;
@@ -109,10 +120,10 @@ const hoverSaved = () => {
 @import "@/assets/style/variables.scss";
 
 .saved-hover {
-  color: green;
+  color: #C5C5C5;
 }
 
 .saved-selected {
-  color: rgb(171, 165, 56);
+  color: $primary;
 }
 </style>

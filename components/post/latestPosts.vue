@@ -46,7 +46,8 @@
   let { data: posts, error } = (await supabase
     .from("posts")
     .select(
-      `
+      `   
+      id,
      title,
      created_at,
        image,

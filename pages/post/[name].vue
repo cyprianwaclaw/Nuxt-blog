@@ -1,16 +1,17 @@
 <template>
   <NuxtLayout name="list">
     <template #content>
-      <div class="flex gray place-items-center gap-[6px]">
-        <p class="text-[16px]">{{ calculateElapsedTime(post.created_at) }}</p>
-        <div class="dot" />
-        <p class="text-[15px]">{{ post.time_read }} min czytania</p>
-        <!-- <div class="dot" /> 
-<p class="text-[16px]">{{ post.category_id1.name }}</p>
-        <div class="dot" />
-        <p class="text-[16px] mt-1">{{ post.category_id2.name }}</p> -->
-      </div>
-      <h2 class="mt-[6px]">{{ post.title }}</h2>
+      <div class="flex justify-between place-items-center">
+        <div class="mr-[32px]">
+          <div class="flex gray place-items-center gap-[6px]">
+            <p class="text-[16px]">{{ calculateElapsedTime(post.created_at) }}</p>
+            <div class="dot" />
+            <p class="text-[15px]">{{ post.time_read }} min czytania</p>
+            </div>
+            <h2 class="mt-[6px]">{{ post.title }}</h2>
+          </div>
+          <ButtonsSaved :id="post.id" :size="32"/>
+        </div>
       <PostSingleInfo :post="post" class="mt-[32px] mb-[46px]" />
       <img :src="post.image" alt="hero image" class="image" />
       <div v-for="(single, index) in post.content" :key="index">
@@ -18,8 +19,15 @@
       </div>
     </template>
     <template #sidebar>
+      {{ post.user_id }}
       {{ post.profiles }}
-      {{ json }}
+      <!-- <div v-if="isLoading">
+        SS
+      </div>
+<div v-else> -->
+  <ButtonsFollower :id="post.user_id " :name="post.profiles.full_name"/>
+<!-- </div> -->
+
       <div class="w-full h-12 bg-blue-100"></div>
     </template>
   </NuxtLayout>
@@ -28,9 +36,9 @@
 <script setup lang="ts">
 const route = useRouter();
 const supabase = useSupabaseClient();
-
-const html = "<p>Example <strong>Text</strong></p>";
-
+const user = useSupabaseUser() as any;
+// const followed = ref() 
+// const isLoading = ref(true);
 let { data: post, error } = (await supabase
   .from("posts")
   .select(
@@ -44,14 +52,26 @@ let { data: post, error } = (await supabase
           category_id1(name),
           category_id2(name),
          description,
+         user_id,
         profiles(
            full_name,
-           avatar_url
+           avatar_url,
+           description
          )
        `
   )
   .match({ id: route.currentRoute.value.params.name })
   .single()) as any;
+
+  // onMounted(async()=>{
+  //   const followersResponse = await supabase
+  //   .from("followers")
+  //   .select("user_followed_id, user_followers_id")
+  //   .eq("user_followed_id", user?.value?.id)
+
+  //   followed.value = followersResponse.data;
+  //   isLoading.value = false;
+  // })
 
 // ! LINK https://www.youtube.com/watch?v=VcnROkRhJ34
 </script>

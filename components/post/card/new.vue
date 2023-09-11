@@ -18,7 +18,7 @@
             color="#BFCBEE"
             size="23"
           />
-          <NuxtLink :to="`/author/${post.profiles.full_name}`">
+          <NuxtLink :to="`/autor/${post.profiles.full_name}`">
             <p class="text-sm">{{ post.profiles.full_name }}</p>
           </NuxtLink>
         </div>
@@ -28,8 +28,9 @@
           <p class="text-[15px]">{{ calculateElapsedTime(post.created_at) }}</p>
         </div>
       </div>
-      <NuxtLink class="cursor-pointer">
+      <NuxtLink :to="`/post/${post.id}`" class="cursor-pointer">
         <h2
+        class="hover:underline"
           :style="{
             fontSize: props.titleSize + 'px',
             marginTop: props.titleTop + 'px',

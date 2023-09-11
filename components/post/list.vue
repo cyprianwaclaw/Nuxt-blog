@@ -25,8 +25,8 @@
        created_at,
          image,
           time_read,
-          category_id1(name),
-          category_id2(name),
+          category_id1(name, id),
+          category_id2(name, id),
          description,
         profiles(
            full_name,

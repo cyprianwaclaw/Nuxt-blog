@@ -1,30 +1,26 @@
 <template>
-    <Transition>
-      <div class="fixed z-50 left-0 bottom-0 w-full">
-        <div class="blur-background-new" v-if="props.modalActive"></div>
-        <Transition 
-        @before-enter="onBeforeEnter"
-        >
+<Transition 
+          @before-enter="onBeforeEnter"
+          >
           <div 
-          class="modal-view-update w-[400px]" 
+          class="modal-view-update" 
           :class="[
             props.status==='success' ? 'alert-green' : '',
             props.status==='error' ? 'alert-red' : '',
             props.status==='alert' ? 'alert-yellow' : '',          
-          ]"
-          v-if="props.modalActive">
-          <div class="flex place-items-center gap-[12px]">
+            ]"
+            v-if="props.modalActive">
+            <div class="flex place-items-center gap-[12px]">
               <div class="">
-                  <Icon v-if="props.status=='error'" name="prime:times-circle" size="37" color="black"/>
-                  <Icon v-if="props.status=='success'" name="prime:check-circle"  size="37" color="black"/>
-                  <Icon v-if="props.status=='alert'" name="prime:exclamation-circle"  size="37" color="black"/>
-                </div>
-                <p class="text-black text-[17x]">{{ props.des }}</p>
+                <Icon v-if="props.status=='error'" name="prime:times-circle" size="37" color="black"/>
+                <Icon v-if="props.status=='success'" name="prime:check-circle"  size="37" color="black"/>
+                <Icon v-if="props.status=='alert'" name="prime:exclamation-circle"  size="37" color="black"/>
+              </div>
+              <p class="text-black text-[17x]">{{ props.des }}</p>
             </div>
           </div>
         </Transition>
-      </div>
-    </Transition>
+
   </template>
   
   <script setup lang="ts">
@@ -47,7 +43,7 @@
 
   const onBeforeEnter = (el: any) => {
   gsap.from(el, { 
-    x: -200,
+    x: 200,
     duration: 0.2,
     // ease: 'power2.inOut',
  });
@@ -72,19 +68,14 @@
     .modal-view-update {
       border: solid transparent;
       border-radius: 12px;
-      position: absolute;
-      top: 16%;
-      left: 15%;
-      transform: translate(-50%, -50%);
+      position: fixed;
+      top: 10%;
+      right: 5%;
+     // transform: translate(-50%, -50%);
       z-index: 100;
-      padding: 13px;
+      padding: 13px 21px 13px 13px;
     }
     
-    .blur-background-new {
-        background: rgba(0, 0, 0, 0.00);
-        width: 100%;
-        height: 100vh;
-    }
 .alert-green{
     background: #96F3C6;
 }
