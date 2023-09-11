@@ -22,7 +22,7 @@
             <p class="text-[17px] font-normal -mt-2 cursor-pointer">{{ sliceText(profil.full_name, 16) }}</p>
           </div>
           </div>
-          <ButtonsFollower :id="profil.id" />
+          <ButtonsFollower :id="profil.id" :name="profil.full_name"/>
       </div>
     </div>
   </div>
