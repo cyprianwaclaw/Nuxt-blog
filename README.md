@@ -1,63 +1,46 @@
-# Nuxt 3 Minimal Starter
+# Blog
 
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+[![plot](./assets/file/show-button.png)](https://nuxt-blog-cyprian.vercel.app)
 
-## Setup
+## Wstęp
+Projekt w fazie wdrożenia realizowany w celach edukacyjno-szkoleniowych z wykorzystaniem technologii Nuxt3 na warstwie frontowej oraz [supabase](https://supabase.com) jako baza danych. Supabase umożliwia w prosty sposób tworzenie oraz zarządzanie relacjami w bazie danych z gotowym zbiorem API, dzięki czemu można w relatywnie krótkim czasie stworzyć w pełni działający backend do aplikacji. 
 
-Make sure to install the dependencies:
 
-```bash
-# npm
-npm install
+## Główne założenia projektowe
 
-# pnpm
-pnpm install
+ 📄 dodawanie przez użytkowników nowych artykułów przez bagebuilder, działający na zasadzie przesuń i upuść
 
-# yarn
-yarn install
-```
+🧑  obserwowanie interesujących autorów, po każdym nowych artukule osoby obserwowanej przychodzą powidomienia, powiadomienia również są dostarczane po dodaniu  reakcji na nasz komentarz oraz udzielenia nowej odpowiedźi do naszego komentarza
 
-## Development Server
+🏷️  zapisywania interesującycych artukułów z podziałem na kolekcje
+ 
+💬  dodawanie komentarzy do artykułów z możliwością dodawania reakcji do nich oraz odpowiedzi przez zalogowanych użytkowników 
 
-Start the development server on `http://localhost:3000`:
+✌️  podział na tematy, każdy artykół można przypisać do maksymalnie dwóch tematów
 
-```bash
-# npm
-npm run dev
+🔎  zaaawansowana wyszukiwaka zintegrowana z  [algolia](https://www.algolia.com)
 
-# pnpm
-pnpm run dev
+## Projekt
 
-# yarn
-yarn dev
-```
+![plot](./assets/file/project.png)
 
-## Production
 
-Build the application for production:
+### Wykorzystana technologia:
+- Javascript, Typescript, CSS, SCSS, HTML
+- Supabase
+- Figma
+- Nuxt3 i vue3
+- Tailwindcss
+- Gsap
+- Vee-validate i yup
+- Vercel i git
+- Rest API
 
-```bash
-# npm
-npm run build
+# Wersja demo
 
-# pnpm
-pnpm run build
+[![plot](./assets/file/show-button.png)](https://nuxt-blog-cyprian.vercel.app)
 
-# yarn
-yarn build
-```
 
-Locally preview production build:
+Login: cyprian@example.com
 
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm run preview
-
-# yarn
-yarn preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+Hasło: test123456
