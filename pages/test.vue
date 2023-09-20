@@ -1,74 +1,161 @@
-<template>
-    <div>
-      <div class="star-rating">
-        <div
-          v-for="star in 5"
-          :key="star"
-          @mouseover="highlightStars(star)"
-          @mouseleave="resetStars()"
-          @click="toggleRating(star)"
-          class="star"
-          :class="{ 'star-disabled': selectedRating > 0 }"
-        >
-          <Icon
-            :name="star <= selectedRating ? 'ph:bookmark-simple' : 'ph:bookmark-simple-duotone'"
-            :size="21"
-            :class="{
-              'star-highlighted': star <= hoverRating || star <= selectedRating,
-              'star-selected': star <= selectedRating
-            }"
-          />
-        </div>
-      </div>
-      <p>{{ selectedRating }} gwiazdek wybranych</p>
-      <button @click="remove()">usun</button>
+<!-- <template>
+  <div class=" mb-20">
+    <input type="checkbox" id="checkbox1" v-model="x" @change="handleCheckboxChange('x')" />
+    <label for="checkbox1">Imię</label>
+    <input type="checkbox" id="checkbox2" v-model="y" @change="handleCheckboxChange('y')" />
+    <label for="checkbox2">Nazwisko</label>
+  </div>
+</template>
+
+<script setup>
+import { ref } from 'vue'
+
+const x = ref(true)
+const y = ref(false)
+
+const handleCheckboxChange = (selected) => {
+  if (selected === 'x' && x.value) {
+    y.value = false
+  } else if (selected === 'y' && y.value) {
+    x.value = false
+  }
+}
+</script> -->
+
+
+
+<!-- <template>
+  <div class="mb-20 ml-10">
+    <div v-for="(checkbox, index) in checkboxes" :key="index">
+      <input :type="checkbox.type" :id="checkbox.id" v-model="checkbox.checked" @change="handleCheckboxChange(index)" />
+      <label :for="checkbox.id">{{ checkbox.label }}</label>
     </div>
-  </template>
+    <button @click="addCokkie()">add</button>
   
-  <script setup>
-  import { ref } from 'vue';
-  
-  const selectedRating = ref(2);
-  const hoverRating = ref(0);
-  
-  const toggleRating = (rating) => {
-    if (selectedRating.value === 0) {
-      selectedRating.value = rating; 
+  </div>
+</template>
+
+<script setup>
+  const cookieData = useCookie('select')
+//   const array = ref([
+//   { id: 'checkbox1', type: 'checkbox', label: 'Imię', checked: false },
+//   { id: 'checkbox2', type: 'checkbox', label: 'Nazwisko', checked: false },
+// ])
+
+const checkboxes = ref([])
+checkboxes.value = [
+  { id: 'checkbox1', type: 'checkbox', label: 'Imię', checked: false },
+  { id: 'checkbox2', type: 'checkbox', label: 'Nazwisko', checked: false },
+]
+
+const currentArray = () => {
+if(cookieData.length){
+  return cookieData.value
+} else {
+  return checkboxes.value
+}
+}
+onMounted(() => {
+  currentArray()
+})
+// const checkboxes = ref([])
+
+// onMounted(() => {
+//  checkboxes.value = cookieData.value.length ? cookieData.value : array.value
+
+// })
+
+const handleCheckboxChange = (selectedIndex) => {
+  checkboxes.value.forEach((checkbox, index) => {
+    if (index !== selectedIndex) {
+      checkbox.checked = false
     }
-  };
-  
-  const highlightStars = (rating) => {
-    hoverRating.value = rating;
-  };
+  })
+}
+const changeArray = ref([])
 
-  const remove = () => {
-    selectedRating.value=0
-    hoverRating.value = 0;
+watch(checkboxes.value, (newValue) => {
+  console.log(newValue)
+  changeArray.value = newValue
+})
+const addCokkie = () => {
+const cookie = useCookie('select')
+cookie.value = changeArray.value
+}
+</script>
+ -->
 
+
+
+
+
+
+ <template>
+  <div class="mb-20 ml-10">
+    <div v-for="(checkbox, index) in checkboxes" :key="index">
+      <input :type="checkbox.type" :id="checkbox.id" v-model="checkbox.checked" @change="handleCheckboxChange(index)" />
+      <label :for="checkbox.id">{{ checkbox.label }}</label>
+    </div>
+    <button @click="saveCookies()">Zapisz</button>
+  </div>
+</template>
+
+<script setup>
+
+const checkboxes = ref([
+  { id: 'checkbox1', type: 'checkbox', label: 'Imię', checked: false },
+  { id: 'checkbox2', type: 'checkbox', label: 'Nazwisko', checked: false }
+])
+
+const cookieData = useCookie('select')
+
+const handleCheckboxChange = (selectedIndex) => {
+  checkboxes.value.forEach((checkbox, index) => {
+    if (index !== selectedIndex) {
+      checkbox.checked = false
+    }
+  })
+}
+
+const saveCookies = () => {
+  const selectedCheckboxes = checkboxes.value.filter((checkbox) => checkbox.checked).map((checkbox) => checkbox.label)
+  cookieData.value = selectedCheckboxes
+}
+
+onMounted(() => {
+  // Wczytaj dane z ciasteczka i ustaw stan checkboxów
+  if (cookieData.value.length) {
+    checkboxes.value.forEach((checkbox) => {
+      checkbox.checked = cookieData.value.includes(checkbox.label)
+    })
   }
-  </script>
-  
-  <style scoped>
-  .star-rating {
-    display: flex;
+})
+</script>
+
+
+
+
+
+
+
+<!-- 
+<script setup lang="ts">
+const test = useCookie('userInfo')
+const user = useCookie(
+  'userInfo',
+  {
+    default: () => ({ score: -1 }),
+    watch: false
   }
-  
-  .star {
-    margin-right: 5px;
-    cursor: pointer;
-  }
-  
-  .star-highlighted, .star-selected {
-    color: green;
-  }
-  
-  .star-selected {
-    color: green;
-  }
-  
-  .star-disabled {
-    pointer-events: none; 
-    opacity: 0.5; 
-  }
-  </style>
-  
+)
+
+if (user.value && user.value !== null) {
+  user.value.score++; // userInfo cookie not update with this change
+}
+</script>
+
+<template>
+  {{ test }}
+  <div>User score: {{ user?.score }}</div>
+</template>
+ -->
