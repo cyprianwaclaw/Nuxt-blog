@@ -26,14 +26,14 @@
               @click="$emit('close')"
               size=17
               iconSize=22
-              :notHover="true"
+              :notHover="false"
               />
               <LinkHover 
-              class="mt-[5px]  cursor-pointer"         
+              class="mt-[5px]  cursor-pointer hover:text-red-500"         
               name="Wyloguj się"
               size="17"
               iconSize="22"
-              :notHover="true"
+              :notHover="false"
               @click="$emit('logout')"
               />
           </div>

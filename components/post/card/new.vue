@@ -18,8 +18,8 @@
             color="#BFCBEE"
             size="23"
           />
-          <NuxtLink :to="`/autor/${post.profiles.full_name}`">
-            <p class="text-sm">{{ post.profiles.full_name }}</p>
+          <NuxtLink :to="`/autor/${post.profiles.link}`">
+            <p class="text-sm hover:underline">{{ post.profiles.full_name }}</p>
           </NuxtLink>
         </div>
         <div class="flex gray place-items-center gap-[6px]">
@@ -28,7 +28,7 @@
           <p class="text-[15px]">{{ calculateElapsedTime(post.created_at) }}</p>
         </div>
       </div>
-      <NuxtLink :to="`/post/${post.id}`" class="cursor-pointer">
+      <NuxtLink :to="`/post/${post.link}`" class="cursor-pointer">
         <h2
         class="hover:underline"
           :style="{
@@ -71,6 +71,8 @@
     border-radius: 14px;
     object-fit: cover;
     width: 100%;
+    border: 1px solid $border;
+
   }
   
   .avatar {

@@ -1,11 +1,10 @@
 <template>
     <div>
         <Head>
-            <Title>{{ currentCategoryName }}</Title>
+            <Title>{{ currentCategory?.name}}</Title>
         </Head>
         <!-- {{ currentCategory }} -->
         <pre>
-{{ currentCategoryId }}
 {{  currentCategory }}
         </pre>
     </div>
@@ -16,14 +15,11 @@ const supabase = useSupabaseClient()
 const router = useRouter()
 const currentCategory = ref()
 
-const currentCategoryId = router.options.history.state.category_id as number
-const currentCategoryName = router.options.history.state.category_name as string
-
 onMounted(async () => {
 const fetchCategory = await supabase
 .from('categories')
   .select('*')
-  .match({id: currentCategoryId })
+  .match({link: router.currentRoute.value.params.name })
   .single()
 
   currentCategory.value = fetchCategory.data

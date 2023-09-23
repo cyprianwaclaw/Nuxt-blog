@@ -7,7 +7,7 @@
           <PostCardNew
             :post="posts[0]"
             :imageHeight="450"
-            :titleTop="16"
+            :titleTop="7"
             :titleBottom="12"
             :authorTop="12"
             :desLength="250"
@@ -20,7 +20,7 @@
             :post="posts[1]"
             :titleSize="18"
             :imageHeight="180"
-            :titleTop="14"
+            :titleTop="10"
             :titleBottom="6"
           :authorTop="12"
             :desLength="105"
@@ -30,7 +30,7 @@
             :post="posts[2]"
             :titleSize="18"
             :imageHeight="180"
-            :titleTop="14"
+            :titleTop="10"
             :titleBottom="6"
               :authorTop="12"
             :desLength="105"
@@ -49,12 +49,14 @@
       `   
       id,
      title,
+     link,
      created_at,
        image,
         time_read,
        description,
       profiles(
          full_name,
+         link,
          avatar_url
        )
      `

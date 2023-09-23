@@ -1,6 +1,6 @@
 /!czekaniwe az wszystko się załaduje i wtedy pobiera dane
 <template>
-  <div>
+  <div class="w-full">
     <div v-if="isLoading">Czekam na dane...</div>
     <div v-else>
       <div v-for="(profil, index) in profiles" :key="index" class="flex justify-between place-items-center w-full py-[20px] px-2"
@@ -18,8 +18,10 @@
             v-else
           />
           <div class="flex flex-col ml-[13px]">
-            <p class="text-[14px] font-medium gray">{{ profil.number_article }} artytułów</p>
-            <p class="text-[17px] font-normal -mt-2 cursor-pointer">{{ sliceText(profil.full_name, 16) }}</p>
+            <p class="text-[14px] gray">{{ profil.number_article }} artytułów</p>
+            <NuxtLink :to="`autor/${profil.link}`">
+            <p class="text-[16px] family font-normal -mt-2 cursor-pointer hover:underline">{{ sliceText(profil.full_name, 15) }}</p>
+            </NuxtLink>
           </div>
           </div>
           <ButtonsFollower :id="profil.id" :name="profil.full_name"/>
@@ -46,7 +48,7 @@ onMounted(async () => {
   // Pobieranie danych profili
   const profilesResponse = (await supabase
     .from("profiles")
-    .select("full_name, avatar_url, id, number_article")
+    .select("full_name, avatar_url, id, number_article, link")
     .limit(4)
     .order("number_article", { ascending: false })) as any;
 

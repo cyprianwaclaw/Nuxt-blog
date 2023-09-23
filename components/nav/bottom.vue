@@ -27,7 +27,7 @@
           :link="link.link"
           size="17"
           iconSize="22"
-          :notHover="true"
+          :notHover="false"
         />
       </div>
       <div class="flex flex-col mr-[50px]">
@@ -40,7 +40,7 @@
           :link="link.link"
           size="17"
           iconSize="22"
-          :notHover="true"
+          :notHover="false"
         />
       </div>
       <div class="flex flex-col w-full h-full bg-[#F8F8F8]">

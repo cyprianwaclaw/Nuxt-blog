@@ -5,26 +5,47 @@
   status="success"
   @close="isModal()"
 />
+<ModalAuth
+:modalActive="isAuth"
+@close="isModalAuth()"
+@logout="isLogout()"
+/>
 <ModalConfirmation
 :modalActive="open2"
 des="Usunięto z zapisanych"
 status="error"
 @close="isModal2()"
 />
-  <div v-if="isLoading">ładowanie</div>
+<div v-if="isLoading">ładowanie</div>
+<div v-else>
+  <div v-if="user">
+    <Icon
+    @mouseover="hoverSaved"
+    @mouseout="hoverSaved"
+    @click="toggleSavedPost"
+    :name="savedPost ? 'ph:bookmark-simple-fill' : 'ph:bookmark-simple'"
+    :size="props.size"
+    class="cursor-pointer text-[#C5C5C5]"
+    :class="{
+      'saved-hover': hoverIcon,
+      'saved-selected': savedPost,
+    }"
+    />
+  </div>
   <div v-else>
     <Icon
-      @mouseover="hoverSaved"
-      @mouseout="hoverSaved"
-      @click="toggleSavedPost"
-      :name="savedPost ? 'ph:bookmark-simple-fill' : 'ph:bookmark-simple'"
-      :size="props.size"
-      class="cursor-pointer text-[#C5C5C5]"
-      :class="{
-        'saved-hover': hoverIcon,
-        'saved-selected': savedPost,
-      }"
+    @mouseover="hoverSaved"
+    @mouseout="hoverSaved"
+    @click="isModalAuth"
+    :name="savedPost ? 'ph:bookmark-simple-fill' : 'ph:bookmark-simple'"
+    :size="props.size"
+    class="cursor-pointer text-[#C5C5C5]"
+    :class="{
+      'saved-hover': hoverIcon,
+      'saved-selected': savedPost,
+    }"
     />
+  </div>
   </div>
 </template>
 
@@ -43,6 +64,10 @@ const props = defineProps({
   }
 })
 
+const isAuth = ref(false);
+const isModalAuth = () => {
+   isAuth.value = !isAuth.value;
+  };
 const savedPost = ref();
 const hoverIcon = ref(false);
 const isLoading = ref(true);

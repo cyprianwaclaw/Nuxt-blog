@@ -22,14 +22,16 @@
       `
       id,
        title,
+       link,
        created_at,
          image,
           time_read,
-          category_id1(name, id),
-          category_id2(name, id),
+          category_id1(name, link),
+          category_id2(name, link),
          description,
         profiles(
            full_name,
+           link,
            avatar_url
          )
        `

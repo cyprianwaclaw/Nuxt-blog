@@ -34,7 +34,7 @@
 </template>
 
 <script setup lang="ts">
-const route = useRouter();
+const router = useRouter();
 const supabase = useSupabaseClient();
 const user = useSupabaseUser() as any;
 // const followed = ref() 
@@ -60,7 +60,7 @@ let { data: post, error } = (await supabase
          )
        `
   )
-  .match({ id: route.currentRoute.value.params.name })
+  .match({ link: router.currentRoute.value.params.name})
   .single()) as any;
 
   // onMounted(async()=>{

@@ -4,7 +4,7 @@
             <slot name="content"/>
 
           </div> 
-          <div class="pl-[50px] border-own shrink-0 w-[300px]">
+          <div class="pl-[50px] border-own shrink-0 w-[310px]">
               <slot name="sidebar"/>
               
             </div>
@@ -15,10 +15,13 @@
 <script setup lang="ts">
 
 </script>
+
+  
 <style scoped lang="scss">
 @import "@/assets/style/variables.scss";
 
-.border-own{
-border-left: 1px solid $border;
-}
+
+.border-own {
+    border-left: 1px solid $border;
+  }
 </style>

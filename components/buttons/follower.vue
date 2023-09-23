@@ -17,6 +17,13 @@
     <div v-else>
       <div v-if="user">
         <button
+        :style="{
+          fontSize: props.size + 'px',
+          paddingTop: props.paddingY + 'px',
+          paddingBottom: props.paddingY + 'px',
+          paddingLeft: props.paddingX + 'px',
+          paddingRight: props.paddingX + 'px',
+        }"
           @click="changeFollow(props.id)"
           :class="{
             'unactive-button': text === 'Obserwuj',
@@ -48,7 +55,19 @@ const props = defineProps({
 name:{
   type:String,
   required:true
-}
+},
+size: {
+    type: Number,
+    required: false,
+  },
+  paddingX: {
+    type: Number,
+    required: false,
+  },
+  paddingY: {
+    type: Number,
+    required: false,
+  },
 });
 
 const open = ref(false);
@@ -126,9 +145,9 @@ $color: #5d9dd9;
   padding: 6px 12px;
 
   color: $color;
-  font-weight: 500;
+  font-weight: 400;
   line-height: 20px; /* 166.667% */
-  letter-spacing: 0.36px;
+  letter-spacing: 0.75px;
   font-size: 13px;
 }
 .unactive-button:hover {
@@ -140,9 +159,9 @@ $color: #5d9dd9;
   padding: 6px 12px;
   color: $white;
   background-color: $color;
-  font-weight: 500;
+  font-weight: 400;
   line-height: 20px; /* 166.667% */
-  letter-spacing: 0.36px;
+  letter-spacing: 0.75px;
   font-size: 13px;
 }
 .active-button:hover {

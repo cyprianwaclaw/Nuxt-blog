@@ -5,15 +5,35 @@
     status="success"
     @close="isModal()"
   />
+  <ModalAuth
+:modalActive="isAuth"
+@close="isModalAuth()"
+@logout="isLogout()"
+/>
   <div v-if="isLoading">Ładowanie</div>
   <div class="star-rating" v-else>
     <div v-if="!user" class="star-rating">
-      <div v-for="star in 5" :key="star">
-        <Icon name="ph:star" :size="23" class="hover:cursor-pointer" />
+      <div
+        v-for="star in 5"
+        :key="star"
+        @mouseover="highlightStars(star)"
+        @mouseleave="resetStars()"
+        @click="isModalAuth"
+        class="star"
+        :class="{ 'star-disabled': selectedRating > 0 }"
+      >
+        <Icon
+          :name="star <= selectedRating ? 'ph:star-fill' : 'ph:star'"
+          :size="21"
+          :class="{
+            'star-highlighted': star <= hoverRating || star <= selectedRating,
+            'star-selected': star <= selectedRating,
+          }"
+        />
       </div>
     </div>
     <div
-      v-else
+    v-else
       v-for="star in 5"
       :key="star"
       @mouseover="highlightStars(star)"
@@ -44,6 +64,11 @@ const open = ref(false);
 let selectedRating = ref(0);
 const hoverRating = ref(0);
 const isLoading = ref(true);
+
+const isAuth = ref(false);
+const isModalAuth = () => {
+   isAuth.value = !isAuth.value;
+  };
 
 const isModal = () => {
   open.value = true;

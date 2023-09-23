@@ -16,8 +16,8 @@
               color="#BFCBEE"
               size="25"
             />
-            <NuxtLink :to="`/autor/${post.profiles.full_name}`">
-              <p class="text-[15px]">{{ post.profiles.full_name }}</p>
+            <NuxtLink :to="`/autor/${post.profiles.link}`">
+              <p class="text-[15px] family  hover:underline">{{ post.profiles.full_name }}</p>
             </NuxtLink>
           </div>
           <div class="flex gray place-items-center gap-[15px] place-items-center">
@@ -28,18 +28,19 @@
             <ButtonsSaved :id="post.id" :size="23"/>
           </div>
         </div>
-        <NuxtLink :to="`/post/${post.id}`" class="cursor-pointer">
-          <p class="leading-6 font-medium text-[21px] hover:underline">
+        <NuxtLink :to="`/post/${post.link}`" class="cursor-pointer">
+          <p class="font-medium text-[21px] hover:underline">
             {{ post.title }}
           </p>
         </NuxtLink>
-        <p class="des mt-[13px]">
+        <p class="des mt-[10px]">
           {{ sliceText(post.description, 140) }}
         </p>
-        <div class="flex justify-between mt-[9px]">
+        <div class="flex justify-between mt-[12px]">
           <div class="flex gap-[14px]">
-            <LinkCategory :name="post.category_id1.name" :link="post.category_id1.id" />
-            <LinkCategory :name="post.category_id2.name" :link="post.category_id2.id" />
+            <!-- {{ post.category_id2.link }} -->
+            <LinkCategory :name="post.category_id2.name" :link="post.category_id2.link" />
+            <LinkCategory :name="post.category_id1.name" :link="post.category_id1.link" />
           </div>
           <div class="flex gray place-items-center gap-[6px]">
             <p class="text-[15px]">{{ post.time_read }} min</p>
@@ -77,6 +78,8 @@
     border-radius: 10px;
     object-fit: cover;
     width: 100%;
+    border: 1px solid $border;
+
   }
   
   .avatar {

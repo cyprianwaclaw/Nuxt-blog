@@ -25,7 +25,7 @@
         <p class="font-base text-[14px] text-open" @click="$emit('componentForgot')">Nie pamiętam hasła</p>
       </div>
       <div v-if="errorLogin" class="relative">
-        <p class="text-[15px] red cursor-default  absolute"><Icon name="ph:warning-circle-light" size="20" color="#f23648" class="mt-[-3px]"/> {{ errorLogin }}</p>
+        <p class="text-[14px] red cursor-default  absolute"><Icon name="ph:warning-circle-light" size="18" color="#f23648" class="mt-[-3px]"/> {{ errorLogin }}</p>
       </div>
       <AuthIcon />
       <div class="flex gap-[6px] justify-center mt-6">

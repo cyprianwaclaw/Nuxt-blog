@@ -9,7 +9,7 @@
   @close="isModalAuth()"
   @logout="isLogout()"
 />
-  <div class="flex place-items-center mx-16 my-6  h-[52px] flex-row  justify-between">
+  <div class="flex place-items-center mx-16 pt-12  h-[52px] flex-row  justify-between">
     <NuxtLink to="/">
       <p class="flex title shrink-0">Nuxt3 Blog</p>
     </NuxtLink>
@@ -25,7 +25,7 @@
           </div>
           <NuxtLink to="/post/nowy" v-else><h3>Dodaj artykuł</h3></NuxtLink>
           <NuxtImg  @click="isModal()" :src="avatar?.avatar_url" v-if="avatar?.avatar_url" class="avatar"/>
-          <Icon @click="isModal()"  name="carbon:user-avatar-filled" class="avatar" color="#BFCBEE" size="55" v-else />
+          <Icon @click="isModal()"  name="carbon:user-avatar-filled"  color="#BFCBEE" size="47" v-else />
         </div>
     </div>
   </div>
@@ -74,7 +74,6 @@ line-height: normal;
     height: 45px;
     cursor: pointer;
     border-radius: 45px;
-    border: 1px solid var(--gray-line, #E9E9E9);
-    //background: url(<path-to-image>), lightgray 50% / cover no-repeat;
+    border: 1px solid $border;
 }
 </style>
