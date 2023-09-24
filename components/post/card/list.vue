@@ -6,7 +6,7 @@
             <img
               v-if="post.profiles.avatar_url"
               :src="post.profiles.avatar_url"
-              class="avatar"
+              class="avatar isLoadingImage"
               loading="lazy"
             />
             <Icon
@@ -17,7 +17,7 @@
               size="25"
             />
             <NuxtLink :to="`/autor/${post.profiles.link}`">
-              <p class="text-[15px] family  hover:underline">{{ post.profiles.full_name }}</p>
+              <p class="text-[15px] family  hover:underline text-light">{{ post.profiles.full_name }}</p>
             </NuxtLink>
           </div>
           <div class="flex gray place-items-center gap-[15px] place-items-center">
@@ -33,8 +33,8 @@
             {{ post.title }}
           </p>
         </NuxtLink>
-        <p class="des mt-[10px]">
-          {{ sliceText(post.description, 140) }}
+        <p class="des mt-[6px]">
+          {{ sliceText(post.description, 114) }}
         </p>
         <div class="flex justify-between mt-[12px]">
           <div class="flex gap-[14px]">
@@ -49,10 +49,10 @@
           </div>
         </div>
       </div>
-      <div class="w-[250px] h-[180px] flex shrink-0">
+      <div class="w-[250px] h-[190px] flex shrink-0">
         <img
           :src="post.image"
-          class="image"
+          class="image isLoadingImage"
           :style="{ height: props.imageHeight + 'px' }"
         />
       </div>

@@ -12,7 +12,7 @@
     <div class="flex flex-row w-full gap-[110px]">
       <div class="w-[280px]">
         <div class="border-own  mb-3 ">
-          <h5 class="mb-[5px]">Kategorie</h5>
+          <h5 class="mb-[5px]"> Popularne tematy</h5>
         </div>
         <PostTableCategories />
       </div>

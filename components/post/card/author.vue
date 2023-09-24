@@ -1,6 +1,6 @@
 <template>
     <div class="cursor-default">
-      <img :src="post.image" class="image" />
+      <img :src="post.image" class="image isLoadingImage" />
       <NuxtLink :to="`/post/${post.link}`" class="cursor-pointer">
         <h3
         class="hover:underline mt-4 mb-3"

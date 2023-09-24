@@ -55,16 +55,16 @@
   
   const links=[{
       name: 'Profil',
-      link: '/post/nowy'
+      link: '/konto'
   },{
       name: 'Zapisane artykuły',
-      link: '/post/nowy'
+      link: '/konto'
   },{
-      name: 'Dodane artykuły',
-      link: '/post/nowy'
+      name: 'Moje artykuły',
+      link: '/konto'
   },{
       name: 'Ustawienia',
-      link: '/post/nowy'
+      link: '/konto/ustawienia'
   }
   ]
   

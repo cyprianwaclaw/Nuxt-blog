@@ -51,16 +51,16 @@
   
   <script setup lang="ts">
   const Blog = [
-    { name: "Najpopularniejszi twórcy", link: "/dodaj" },
-    { name: "Przeglądaj tematy", link: "/daa" },
-    { name: "Polityka prywatności", link: "/daa" },
-    { name: "Regulamin", link: "/daa" },
+    { name: "Najpopularniejszi twórcy", link: "/popularni" },
+    { name: "Przeglądaj tematy", link: "/temat" },
+    { name: "Polityka prywatności", link: "/polityka" },
+    { name: "Regulamin", link: "/polityka" },
   ];
   const Account = [
-    { name: "Mój profil", link: "/dodaj" },
-    { name: "Zapisane artykuły", link: "/daa" },
-    { name: "Moje artykuły", link: "/daa" },
-    { name: "Dodaj nowy artykuł", link: "/daa" },
+    { name: "Profil", link: "/konto" },
+    { name: "Zapisane artykuły", link: "/konto" },
+    { name: "Moje artykuły", link: "/konto" },
+    { name: "Dodaj nowy artykuł", link: "/post/nowy" },
   ];
   </script>
   

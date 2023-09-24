@@ -13,29 +13,57 @@
   />
   <div>
     <ModalAuth :modalActive="isAuth" @close="isModalAuth()" />
-    <div v-if="isLoading">Ładowanie...</div>
+    <div v-if="user.id==props.id">
+    </div>
+    <div v-else>
+
+      <div v-if="isLoading">
+        <button class="w-[120px] h-[34px] unactive-button loading-button">
+          <div strss="spinner-container">
+            <svg
+            class="spinner"
+            width="18px"
+            height="18px"
+            viewBox="0 0 66 66"
+            xmlns="http://www.w3.org/2000/svg"
+            >
+            <circle
+            class="path"
+            fill="none"
+            stroke-width="6"
+            stroke-linecap="round"
+            cx="33"
+            cy="33"
+            r="30"
+            ></circle>
+          </svg>
+        </div>
+      </button>
+    </div>
     <div v-else>
       <div v-if="user">
-        <button
-        :style="{
+        <!-- :style="{
           fontSize: props.size + 'px',
           paddingTop: props.paddingY + 'px',
           paddingBottom: props.paddingY + 'px',
           paddingLeft: props.paddingX + 'px',
           paddingRight: props.paddingX + 'px',
+        }" -->
+        <button
+        class="w-[120px] h-[34px]"
+        @click="changeFollow(props.id)"
+        :class="{
+          'unactive-button': text === 'Obserwuj',
+          'active-button': text !== 'Obserwuj',
         }"
-          @click="changeFollow(props.id)"
-          :class="{
-            'unactive-button': text === 'Obserwuj',
-            'active-button': text !== 'Obserwuj',
-          }"
         >
-          {{ text }}
-        </button>
-      </div>
-      <div v-else>
-        <button @click="isModalAuth()" class="unactive-button">Obserwuj</button>
-      </div>
+        {{ text }}
+      </button>
+    </div>
+    <div v-else>
+      <button @click="isModalAuth()" class="unactive-button">Obserwuj</button>
+    </div>
+  </div>
     </div>
   </div>
 </template>
@@ -50,13 +78,13 @@ const text = ref();
 const props = defineProps({
   id: {
     type: String,
-    required:true
+    required: true,
   },
-name:{
-  type:String,
-  required:true
-},
-size: {
+  name: {
+    type: String,
+    required: true,
+  },
+  size: {
     type: Number,
     required: false,
   },
@@ -106,11 +134,11 @@ onMounted(async () => {
 
 const changeFollow = (item: any) => {
   if (text.value == "Obserwujesz") {
-    isModal2()
+    isModal2();
     text.value = "Obserwuj";
     unfollow(item);
   } else {
-    isModal()
+    isModal();
     text.value = "Obserwujesz";
     follow(item);
   }
@@ -132,13 +160,28 @@ const unfollow = async (item: any) => {
 };
 
 const textDesc = () => {
- return "Obserwujesz użytkownika " + props.name;
-}
+  return "Obserwujesz użytkownika " + props.name;
+};
 </script>
 
 <style scoped lang="scss">
 @import "@/assets/style/variables.scss";
 $color: #5d9dd9;
+
+
+.loading-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.spinner-container {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .unactive-button {
   border-radius: 8px;
   border: 1px solid $color;
@@ -166,5 +209,63 @@ $color: #5d9dd9;
 }
 .active-button:hover {
   background-color: #5494cf;
+}
+
+// Here is where the magic happens
+
+$offset: 187;
+$duration: 1.2s;
+
+.spinner {
+  animation: rotator $duration linear infinite;
+}
+
+@keyframes rotator {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(270deg);
+  }
+}
+
+.path {
+  stroke-dasharray: $offset;
+  stroke-dashoffset: 0;
+  transform-origin: center;
+  animation: dash $duration ease-in-out infinite,
+    colors ($duration * 4) ease-in-out infinite;
+}
+
+@keyframes colors {
+  0% {
+    stroke: #4285f4;
+  }
+  25% {
+    stroke: #de3e35;
+  }
+  50% {
+    stroke: #f7c223;
+  }
+  75% {
+    stroke: #1b9a59;
+  }
+  100% {
+    stroke: #4285f4;
+  }
+}
+
+@keyframes dash {
+  0% {
+    stroke-dashoffset: $offset;
+  }
+  50% {
+    stroke-dashoffset: $offset/4;
+    transform: rotate(135deg);
+  }
+  100% {
+    stroke-dashoffset: $offset;
+    transform: rotate(450deg);
+  }
 }
 </style>

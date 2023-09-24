@@ -4,8 +4,10 @@
             <slot name="content"/>
 
           </div> 
-          <div class="pl-[50px] border-own shrink-0 w-[300px]">
-              <slot name="sidebar"/>
+          <div class="pl-[50px] border-own shrink-0 w-[350px] sticky top-[70px]">
+            <div class="sticky top-[60px]">
+                <slot name="sidebar"/>
+            </div>
               
             </div>
         </div>

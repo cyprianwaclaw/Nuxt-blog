@@ -8,7 +8,13 @@
     </div>
       </template>
       <template #sidebar>
-        <div class="w-full h-12 bg-blue-100"></div>
+        <h5 class="mt-4">Popularne tematy</h5>
+          <div class="flex flex-wrap gap-x-3 gap-y-3 mt-5 border-own pb-8">
+            <LinkCategory v-for="(single, index) in categories" :key="index" :name="single.name" :link="single.id"/>
+          </div>
+          <!-- <div class="flex flex-wrap gap-x-3 gap-y-3 mt-5 border-own pb-8">
+            <LinkCategory v-for="(single, index) in categories" :key="index" :name="single.name" :link="single.id"/>
+          </div> -->
       </template>
   </NuxtLayout>
 
@@ -38,12 +44,18 @@
     )
     .limit(6)) as //   .order("created_at", { ascending: false })
   any;
+
+const {data: categories} = (await supabase
+.from("categories")
+.select('*')
+) as any
+
   </script>
   
   <style scoped lang="scss">
   @import "@/assets/style/variables.scss";
   
   .border-own {
-    border-left: 1px solid $border;
+    border-bottom: 1px solid $border;
   }
   </style>

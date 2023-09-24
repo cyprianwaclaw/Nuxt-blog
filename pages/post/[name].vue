@@ -7,28 +7,60 @@
             <p class="text-[16px]">{{ calculateElapsedTime(post.created_at) }}</p>
             <div class="dot" />
             <p class="text-[15px]">{{ post.time_read }} min czytania</p>
-            </div>
-            <h2 class="mt-[6px]">{{ post.title }}</h2>
           </div>
-          <ButtonsSaved :id="post.id" :size="32"/>
+          <h2 class="mt-[6px]">{{ post.title }}</h2>
         </div>
+        <ButtonsSaved :id="post.id" :size="32" />
+      </div>
       <PostSingleInfo :post="post" class="mt-[32px] mb-[46px]" />
-      <img :src="post.image" alt="hero image" class="image" />
+      <img :src="post.image" class="image isLoadingImage" />
       <div v-for="(single, index) in post.content" :key="index">
         <p :class="single.class">{{ single.text }}</p>
       </div>
+      <div class="w-full h-[1000px]">
+
+      </div>
     </template>
     <template #sidebar>
-      {{ post.user_id }}
-      {{ post.profiles }}
-      <!-- <div v-if="isLoading">
-        SS
+      <div v-if="post.profiles?.avatar_url ? true : false">dsdsd</div>
+      <div v-else class="flex w-full mb-2">
+        <Icon name="carbon:user-avatar-filled" class="avatar" color="#BFCBEE" size="64" />
       </div>
-<div v-else> -->
-  <ButtonsFollower :id="post.user_id " :name="post.profiles.full_name"/>
-<!-- </div> -->
+      <NuxtLink :to="`/autor/${post.profiles.link}`">
+        <p class="text-[24px] hover:underline">{{ post.profiles.full_name }}</p>
+      </NuxtLink>
+      <p class="mt-2 mb-5 des">{{ sliceText(post.profiles?.description, 170) }}</p>
+      <ButtonsFollower :id="post.user_id" :name="post.profiles.full_name" />
+      <div class="border-own py-7 mt-7">
+        <h5>Powiązane tematy</h5>
+        <div class="flex flex-wrap gap-x-3 gap-y-3 mt-5">
+          <LinkCategory
+            v-for="(single, index) in categories"
+            :key="index"
+            :name="single.name"
+            :link="single.id"
+          />
+        </div>
+      </div>
+      <div class="border-own py-7">
+        <h5>
+          Popularni w {{ post.category_id1.name.toLowerCase() }} i
+          {{ post.category_id2.name.toLowerCase() }}
+        </h5>
+        <div class="flex flex-wrap mt-5">
+          <div v-for="(user, index) in users" :key="index" class="-mr-5">
+            <!-- {{ user.full_name }} -->
+            <NuxtLink :to="`/autor/${user.link}`">
+              <div v-if="user.avatar_url ? true : false">dsdsd</div>
+              <div v-else class="flex w-full mb-2">
+                <Icon name="carbon:user-avatar-filled" class="avatar" color="#BFCBEE" size="54" />
+              </div>
+            </NuxtLink>
+      <!-- <ButtonsFollower :id="user.id" :name="user.full_name" /> -->
 
-      <div class="w-full h-12 bg-blue-100"></div>
+          </div>
+        </div>
+      </div>
     </template>
   </NuxtLayout>
 </template>
@@ -37,7 +69,7 @@
 const router = useRouter();
 const supabase = useSupabaseClient();
 const user = useSupabaseUser() as any;
-// const followed = ref() 
+// const followed = ref()
 // const isLoading = ref(true);
 let { data: post, error } = (await supabase
   .from("posts")
@@ -55,23 +87,25 @@ let { data: post, error } = (await supabase
          user_id,
         profiles(
            full_name,
+           link,
            avatar_url,
            description
          )
        `
   )
-  .match({ link: router.currentRoute.value.params.name})
+  .match({ link: router.currentRoute.value.params.name })
   .single()) as any;
 
-  // onMounted(async()=>{
-  //   const followersResponse = await supabase
-  //   .from("followers")
-  //   .select("user_followed_id, user_followers_id")
-  //   .eq("user_followed_id", user?.value?.id)
+const { data: categories } = (await supabase
+  .from("categories")
+  .select("*")
+  .limit(5)) as any;
 
-  //   followed.value = followersResponse.data;
-  //   isLoading.value = false;
-  // })
+const { data: users } = (await supabase
+  .from("profiles")
+  .select("link, avatar_url, full_name")
+// dodac osbsługe tematów
+  .limit(5)) as any;
 
 // ! LINK https://www.youtube.com/watch?v=VcnROkRhJ34
 </script>
@@ -83,6 +117,10 @@ let { data: post, error } = (await supabase
   object-fit: cover;
   height: 500px;
   width: 100%;
+}
+
+.border-own {
+  border-top: 1px solid $border;
 }
 
 .h1 {

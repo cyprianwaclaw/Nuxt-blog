@@ -12,12 +12,9 @@ lazyLoad: {
   iframes: true,
   native: false,
   directiveOnly: false,
-  
-  // Default image must be in the public folder
-  defaultImage: '/images/default-image.jpg',
 
   // To remove class set value to false
-  loadingClass: 'isLoading',
+  loadingClass: 'isLoadingImage',
   loadedClass: 'isLoaded',
   appendClass: 'lazyLoad',
   
