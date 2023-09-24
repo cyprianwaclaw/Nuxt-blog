@@ -13,70 +13,70 @@
   />
   <div>
     <ModalAuth :modalActive="isAuth" @close="isModalAuth()" />
-    <div v-if="user?.id==props?.id">
-    </div>
+    <div v-if="user?.id == props?.id"></div>
     <div v-else>
       <div v-if="isLoading">
         <button class="w-[120px] h-[34px] unactive-button loading-button">
           <div strss="spinner-container">
             <svg
-            class="spinner"
-            width="18px"
-            height="18px"
-            viewBox="0 0 66 66"
-            xmlns="http://www.w3.org/2000/svg"
+              class="spinner"
+              width="18px"
+              height="18px"
+              viewBox="0 0 66 66"
+              xmlns="http://www.w3.org/2000/svg"
             >
-            <circle
-            class="path"
-            fill="none"
-            stroke-width="6"
-            stroke-linecap="round"
-            cx="33"
-            cy="33"
-            r="30"
-            ></circle>
-          </svg>
-        </div>
-      </button>
-    </div>
-    <div v-else>
-      <div v-if="user">
-        <div v-if="user?.id==props?.id">
-        </div>
-        <div v-else>
-        <!-- :style="{
+              <circle
+                class="path"
+                fill="none"
+                stroke-width="6"
+                stroke-linecap="round"
+                cx="33"
+                cy="33"
+                r="30"
+              ></circle>
+            </svg>
+          </div>
+        </button>
+      </div>
+      <div v-else>
+        <div v-if="user">
+          <div v-if="user?.id == props?.id"></div>
+          <div v-else>
+            <!-- :style="{
           fontSize: props.size + 'px',
           paddingTop: props.paddingY + 'px',
           paddingBottom: props.paddingY + 'px',
           paddingLeft: props.paddingX + 'px',
           paddingRight: props.paddingX + 'px',
         }" -->
-        <button
-        class="w-[120px] h-[34px]"
-        @click="changeFollow(props.id)"
-        :class="{
-          'unactive-button': text === 'Obserwuj',
-          'active-button': text !== 'Obserwuj',
-        }"
-        >
-        {{ text }}
-      </button>
+            <button
+              class="w-[120px] h-[34px]"
+              @click="changeFollow(props.id)"
+              :class="{
+                'unactive-button': text === 'Obserwuj',
+                'active-button': text !== 'Obserwuj',
+              }"
+            >
+              {{ text }}
+            </button>
+          </div>
+        </div>
+        <div v-else>
+          <div v-if="user?.id == props?.id"></div>
+          <div v-else>
+            <button @click="isModalAuth()" class="unactive-button w-[120px] h-[34px]">
+              Obserwuj
+            </button>
+          </div>
+        </div>
       </div>
-    </div>
-    <div v-else>
-      <div v-if="user?.id==props?.id">
-      </div>
-      <div v-else>
-      <button @click="isModalAuth()" class="unactive-button w-[120px] h-[34px]">Obserwuj</button>
-    </div>
-    </div>
-  </div>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
 const user = useSupabaseUser() as any;
+const newUser = ref();
 const supabase = useSupabaseClient();
 const isLoading = ref(true);
 const isFollow = ref();
@@ -169,12 +169,28 @@ const unfollow = async (item: any) => {
 const textDesc = () => {
   return "Obserwujesz użytkownika " + props.name;
 };
+
+watch(user, async (newValue: any) => {
+  newUser.value = newValue;
+  isLoading.value = true;
+
+  const followersResponse = await supabase
+    .from("followers")
+    .select("user_followed_id, user_followers_id")
+    .eq("user_followed_id", user?.value?.id);
+
+  isFollow.value = followersResponse.data?.some(
+    (el: any) => el.user_followers_id == props.id
+  );
+  text.value = isFollow.value ? "Obserwujesz" : "Obserwuj";
+  isLoading.value = false;
+  // console.log(newValue);
+});
 </script>
 
 <style scoped lang="scss">
 @import "@/assets/style/variables.scss";
 $color: #5d9dd9;
-
 
 .loading-button {
   display: flex;
