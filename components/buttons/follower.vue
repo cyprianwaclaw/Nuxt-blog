@@ -13,10 +13,9 @@
   />
   <div>
     <ModalAuth :modalActive="isAuth" @close="isModalAuth()" />
-    <div v-if="user.id==props.id">
+    <div v-if="user?.id==props?.id">
     </div>
     <div v-else>
-
       <div v-if="isLoading">
         <button class="w-[120px] h-[34px] unactive-button loading-button">
           <div strss="spinner-container">
@@ -42,6 +41,9 @@
     </div>
     <div v-else>
       <div v-if="user">
+        <div v-if="user?.id==props?.id">
+        </div>
+        <div v-else>
         <!-- :style="{
           fontSize: props.size + 'px',
           paddingTop: props.paddingY + 'px',
@@ -59,9 +61,14 @@
         >
         {{ text }}
       </button>
+      </div>
     </div>
     <div v-else>
-      <button @click="isModalAuth()" class="unactive-button">Obserwuj</button>
+      <div v-if="user?.id==props?.id">
+      </div>
+      <div v-else>
+      <button @click="isModalAuth()" class="unactive-button w-[120px] h-[34px]">Obserwuj</button>
+    </div>
     </div>
   </div>
     </div>
