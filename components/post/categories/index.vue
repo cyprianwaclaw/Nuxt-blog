@@ -83,8 +83,8 @@ const router = useRouter()
 const currentComponent = shallowRef();
 const loadComponent = async (componentName: string) => {
   // const component = await import(`@/components/auth/${componentName}.vue`);
-  // const component = await import(`@/components/post/categories/${componentName}.vue`);
-  const component = await import(/* @vite-ignore */ `./${componentName}.vue`);
+  const component = await import(`@/components/post/categories/${componentName}.vue`);
+  // const component = await import(/* @vite-ignore */ `./${componentName}.vue`);
 
   currentComponent.value = component.default || component;
   // setTransitionName();
