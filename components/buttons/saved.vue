@@ -92,6 +92,8 @@ const isModal2 = () => {
     open2.value = false;
   }, 1200);
 };
+
+// dobry przykład jak ponownie pobra dane podczas zalogowania
 const fetchData = async () => {
   const { data, error } = await supabase
     .from("saved_posts")
@@ -107,6 +109,13 @@ const fetchData = async () => {
 onMounted(() => {
   fetchData();
 });
+
+
+watch(user, async (newValue) => {
+  isLoading.value = true;
+    fetchData();
+});
+
 
 const toggleSavedPost = async () => {
   const insertData = [

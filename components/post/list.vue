@@ -10,7 +10,7 @@
       <template #sidebar>
         <h5 class="mt-4">Popularne tematy</h5>
           <div class="flex flex-wrap gap-x-3 gap-y-3 mt-5 border-own pb-8">
-            <LinkCategory v-for="(single, index) in categories" :key="index" :name="single.name" :link="single.id"/>
+            <LinkCategory v-for="(single, index) in categories" :key="index" :name="single.name" :link="single.link"/>
           </div>
           <!-- <div class="flex flex-wrap gap-x-3 gap-y-3 mt-5 border-own pb-8">
             <LinkCategory v-for="(single, index) in categories" :key="index" :name="single.name" :link="single.id"/>

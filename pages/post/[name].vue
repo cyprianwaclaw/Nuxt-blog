@@ -38,7 +38,7 @@
             v-for="(single, index) in categories"
             :key="index"
             :name="single.name"
-            :link="single.id"
+            :link="single.link"
           />
         </div>
       </div>
@@ -81,8 +81,8 @@ let { data: post, error } = (await supabase
          image,
          content,
           time_read,
-          category_id1(name),
-          category_id2(name),
+          category_id2(name, link),
+          category_id1(name, link),
          description,
          user_id,
         profiles(
