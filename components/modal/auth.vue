@@ -72,7 +72,9 @@
   
   const currentComponent = shallowRef();
   const loadComponent = async (componentName: string) => {
-    const component = await import(`@/components/auth/${componentName}.vue`);
+    // const component = await import(`@/components/auth/${componentName}.vue`);
+  const component = await import(`@/components/post/categories/${componentName}.vue`);
+
     currentComponent.value = component.default || component;
     setTransitionName();
   };
@@ -83,7 +85,7 @@
   };
   
   onMounted(() => {
-    loadComponent("login");
+    loadComponent("last");
   });
   </script>
   
