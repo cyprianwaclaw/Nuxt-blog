@@ -5,7 +5,7 @@
       </div> -->
     <!-- </Transition> -->
     <!-- <Transition @before-enter="onBefore"> -->
-      <div class="modal-view w-[800px] relative h-[600px]" v-if="true">
+      <!-- <div class="modal-view w-[800px] relative h-[600px]" v-if="true">
         <div class=" top-4 right-6">
           <Icon
             name="carbon:close"
@@ -19,21 +19,26 @@
           >
             <img src="/assets/login.png" alt="Login Image" />
           </div>
-          <div class="px-[26px] py-[24px] h-full pt-[64px]">
+          <div class="px-[26px] py-[24px] h-full pt-[64px]"> -->
             <!-- <Transition :name="animationName" mode="out-in"> -->
+
+<button @click="loadComponent('last')">last</button>
+<button @click="loadComponent('popular')">popular</button>
+<button @click="loadComponent('topRating')">topRating</button>
+<!-- <button @click="loadComponent('')"></button> -->
+
               <component
-                :is="currentComponent"
-                @close="closeModal"
+                :is="currentComponent"             
+                />
+                <!-- @close="closeModal"
                 @componentLogin="loadComponent('login')"
                 @componentRegister1="loadComponent('register1')"
                 @componentRegister2="loadComponent('register2')"
-                @componentForgot="loadComponent('forgotPassword')"
-  
-              />
+                @componentForgot="loadComponent('forgotPassword')" -->
             <!-- </Transition> -->
-          </div>
-        </div>
-      </div>
+          <!-- </div> -->
+        <!-- </div> -->
+      <!-- </div> -->
     <!-- </Transition> -->
   </template>
   

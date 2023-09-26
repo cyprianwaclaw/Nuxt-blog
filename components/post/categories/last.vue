@@ -1,5 +1,5 @@
 <template>
-  <!-- last -->
+  last
     <div v-for="(post, index) in posts" :key="index" class="grid grid-col mt-[43px]">
         <PostCardList
         :post="post"
