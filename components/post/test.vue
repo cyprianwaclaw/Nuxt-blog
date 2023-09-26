@@ -21,10 +21,49 @@
           </div>
           <div class="px-[26px] py-[24px] h-full pt-[64px]"> -->
             <!-- <Transition :name="animationName" mode="out-in"> -->
-
-<button @click="loadComponent('last')">last</button>
+                <div class="flex gap-[8px]">
+                    <div
+                      class="pb-[2px] px-4"
+                      @click="last()"
+                      :class="[currentComponent?.__name === 'last' ? 'border-active' : '']"
+                    >
+                      <p
+                        class="gray text-[15px] hover:text-black hover:cursor-pointer"
+                        :class="[currentComponent?.__name === 'last' ? 'active' : '']"
+                      >
+                        Najnowsze
+                      </p>
+                    </div>
+                    <div
+                      class="pb-[2px] px-4"
+                      @click="popular()"
+                      :class="[currentComponent?.__name === 'popular' ? 'border-active' : '']"
+                    >
+                      <p
+                        class="gray text-[15px] hover:text-black hover:cursor-pointer"
+                        :class="[currentComponent?.__name === 'popular' ? 'active' : '']"
+                      >
+                        Najpopularniejsze
+                      </p>
+                    </div>
+                    <div
+                      class="pb-[2px] px-4"
+                      @click="topRating()"
+                      :class="[currentComponent?.__name === 'topRating' ? 'border-active' : '']"
+                    >
+                      <p
+                        class="gray text-[15px] hover:text-black hover:cursor-pointer"
+                        :class="[currentComponent?.__name === 'topRating' ? 'active' : '']"
+                      >
+                        Najlepiej oceniane
+                      </p>
+                    </div>
+                  </div>
+                  <hr />
+            <!-- {{ currentComponent?.__name }} -->
+<!-- <button @click="loadComponent('last')">last</button>
 <button @click="loadComponent('popular')">popular</button>
-<button @click="loadComponent('topRating')">topRating</button>
+<button @click="loadComponent('topRating')">topRating</button> -->
 <!-- <button @click="loadComponent('')"></button> -->
 
               <component
@@ -44,7 +83,8 @@
   
   <script setup lang="ts">
   import gsap from "gsap";
-  const emit = defineEmits(["close", "logout"]);
+  const router = useRouter()
+//   const emit = defineEmits(["close", "logout"]);
 //   const props = defineProps({
 //     modalActive: {
 //       type: Boolean,
@@ -83,18 +123,70 @@
     setTransitionName();
   };
   
-  const closeModal = () => {
-    emit("close");
-    loadComponent("login");
-  };
+//   const closeModal = () => {
+//     emit("close");
+//     loadComponent("login");
+//   };
   
-  onMounted(() => {
+  onMounted(()=>{
     loadComponent("last");
-  });
+    let params=router.currentRoute.value.query.p as string
+console.log(params)
+if(params ==='popular'){
+    loadComponent("popular");
+} else if(params ==='topRating'){
+    loadComponent("topRating");
+} else if(params ==='last'){
+    loadComponent("last");
+    // last()
+} else{
+    loadComponent("last");
+}
+})
+
+
+const popular = () => {
+  loadComponent("popular");
+  router.push({query:{p:'popular'}})
+
+};
+
+const last = () => {
+  loadComponent("last");
+  router.push({query:{p:'last'}})
+};
+const topRating = () => {
+  loadComponent("topRating");
+  router.push({query:{p:'topRating'}})
+
+};
+
+onBeforeRouteUpdate(async (to, from) => {
+let params= to.query.p
+console.log(params)
+if(params ==='popular'){
+    loadComponent("popular");
+} else if(params ==='topRating'){
+    loadComponent("topRating");
+} else if(params ==='last'){
+    loadComponent("last");
+    // last()
+} else{
+    loadComponent("last");
+}
+})
   </script>
   
   <style scoped lang="scss">
   @import "@/assets/style/variables.scss";
+
+
+.border-active {
+    border-bottom: 3px solid $primary;
+  }
+  .active {
+    color: $primary;
+  }
   .close {
     color: rgb(194, 194, 194);
   }
