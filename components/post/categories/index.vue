@@ -82,8 +82,8 @@ import gsap from "gsap";
 const router = useRouter()
 const currentComponent = shallowRef();
 const loadComponent = async (componentName: string) => {
-  // const component = await import(`@/components/auth/${componentName}.vue`);
-  const component = await import(`@/components/post/categories/${componentName}.vue`);
+  const component = await import(`@/components/auth/${componentName}.vue`);
+  // const component = await import(`@/components/post/categories/${componentName}.vue`);
   // const component = await import(/* @vite-ignore */ `./${componentName}.vue`);
 
   currentComponent.value = component.default || component;
@@ -91,7 +91,7 @@ const loadComponent = async (componentName: string) => {
 };
 
 onMounted(()=>{
-    loadComponent("last");
+    loadComponent("login");
     let params=router.currentRoute.value.query.p as string
 console.log(params)
 if(params ==='popular'){
@@ -102,7 +102,7 @@ if(params ==='popular'){
     loadComponent("last");
     // last()
 } else{
-    loadComponent("last");
+    loadComponent("login");
 }
 })
 
@@ -115,7 +115,7 @@ const popular = () => {
 
 const last = () => {
   loadComponent("last");
-  router.push({query:{p:'last'}})
+  router.push({query:{p:'login'}})
 };
 const topRating = () => {
   loadComponent("topRating");
@@ -131,10 +131,10 @@ if(params ==='popular'){
 } else if(params ==='topRating'){
     loadComponent("topRating");
 } else if(params ==='last'){
-    loadComponent("last");
+    loadComponent("login");
     // last()
 } else{
-    loadComponent("last");
+    loadComponent("login");
 }
 })
 //   const closeModal = () => {
