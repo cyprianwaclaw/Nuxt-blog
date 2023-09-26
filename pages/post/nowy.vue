@@ -1,6 +1,5 @@
 <template>
     <div>
-      <PostTest/>
       <label for="fileInput">Wybierz plik:</label>
       <input v-model="title" placeholder="title" />
       <input type="file" id="fileInput" @change="handleFileChange" />

@@ -1,6 +1,6 @@
 <template>
     <div class="w-[300px]">
-      <h2 class="mb-10">Logowanie</h2>
+      <h2 class="mb-10 text-black">Logowanie</h2>
       <Form @submit="login" :validation-schema="schema" @click="click()">
         <!-- {{ user }} -->
         <InputBase name="mail" label="E-mail" id="mail" type="text" />
@@ -29,7 +29,7 @@
       </div>
       <AuthIcon />
       <div class="flex gap-[6px] justify-center mt-6">
-        <p class="font-base text-[14px] cursor-default">Nie masz konta?</p>
+        <p class="font-base text-[14px] cursor-default text-black">Nie masz konta?</p>
         <p class="font-medium text-[14px] text-open" @click="$emit('componentRegister1')">Zarejestruj się</p>
       </div>
     </div>
@@ -95,4 +95,10 @@
   .icon:hover{
     color: $text-gray;
   }
+  .text-open{
+color: $text-black;
+  }
+  .text-open:hover{
+    color: $text-gray;
+      }
   </style>
