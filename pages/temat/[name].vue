@@ -27,7 +27,7 @@
         </div> -->
         <!-- <hr /> -->
         <!-- <ModalAuth/> -->
-        <PostCategories />
+        <!-- <PostCategories /> -->
         <!-- {{ currentComponent }}   -->
         <!-- <button  @click="currentTab = 'Posts'">test</button> -->
         <!-- <div v-if="popular">
@@ -37,6 +37,9 @@
         :is="tabs[currentTab]"
         />  
           {{ currentComponent }}            -->
+
+      <PostTest/>
+
       </template>
       <!-- <template #sidebar> 
 
