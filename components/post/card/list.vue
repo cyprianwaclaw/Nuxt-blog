@@ -52,7 +52,7 @@
       <div class="w-[250px] h-[190px] flex shrink-0">
         <img
           :src="post.image"
-          class="image isLoadingImage"
+          class="image isLoading"
           :style="{ height: props.imageHeight + 'px' }"
         />
       </div>

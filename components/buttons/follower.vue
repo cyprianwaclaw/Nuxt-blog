@@ -42,13 +42,6 @@
         <div v-if="user">
           <div v-if="user?.id == props?.id"></div>
           <div v-else>
-            <!-- :style="{
-          fontSize: props.size + 'px',
-          paddingTop: props.paddingY + 'px',
-          paddingBottom: props.paddingY + 'px',
-          paddingLeft: props.paddingX + 'px',
-          paddingRight: props.paddingX + 'px',
-        }" -->
             <button
               class="w-[120px] h-[34px]"
               @click="changeFollow(props.id)"
@@ -127,6 +120,8 @@ const isModalAuth = () => {
 };
 
 onMounted(async () => {
+  setTimeout(async () => {
+
   const followersResponse = await supabase
     .from("followers")
     .select("user_followed_id, user_followers_id")
@@ -137,6 +132,7 @@ onMounted(async () => {
   );
   text.value = isFollow.value ? "Obserwujesz" : "Obserwuj";
   isLoading.value = false;
+  }, 500)
 });
 
 const changeFollow = (item: any) => {
@@ -262,19 +258,19 @@ $duration: 1.2s;
 
 @keyframes colors {
   0% {
-    stroke: #4285f4;
+    stroke: $primary;
   }
   25% {
-    stroke: #de3e35;
+    stroke: $primary;
   }
   50% {
-    stroke: #f7c223;
+    stroke: $primary;
   }
   75% {
-    stroke: #1b9a59;
+    stroke: $primary;
   }
   100% {
-    stroke: #4285f4;
+    stroke: $primary;
   }
 }
 

@@ -65,7 +65,7 @@
 <button @click="loadComponent('popular')">popular</button>
 <button @click="loadComponent('topRating')">topRating</button> -->
 <!-- <button @click="loadComponent('')"></button> -->
-
+   <Transition name="slide-fade" mode="out-in">
               <component
                 :is="currentComponent"             
                 />
@@ -74,7 +74,7 @@
                 @componentRegister1="loadComponent('register1')"
                 @componentRegister2="loadComponent('register2')"
                 @componentForgot="loadComponent('forgotPassword')" -->
-            <!-- </Transition> -->
+            </Transition>
           <!-- </div> -->
         <!-- </div> -->
       <!-- </div> -->
@@ -101,18 +101,18 @@
   
   const animationName = ref("slide-fade");
   
-  const setTransitionName = () => {
-    if (
-      currentComponent.value.__name === "login" ||
-      currentComponent.value.__name === "forgotPassword"
-      || currentComponent.value.__name === "register1"
-    ) {
-      animationName.value = "slide-fade";
-      // animationName.value = "slide-up";
-    } else {
-      animationName.value = "";
-    }
-  };
+//   const setTransitionName = () => {
+//     if (
+//       currentComponent.value.__name === "login" ||
+//       currentComponent.value.__name === "forgotPassword"
+//       || currentComponent.value.__name === "register1"
+//     ) {
+//       animationName.value = "slide-fade";
+//     } else {
+//         animationName.value = "slide-up";
+//         // animationName.value = "";
+//     }
+//   };
   
   const currentComponent = shallowRef();
   const loadComponent = async (componentName: string) => {
@@ -120,7 +120,7 @@
   const component = await import(`@/components/post/categories/${componentName}.vue`);
 
     currentComponent.value = component.default || component;
-    setTransitionName();
+    // setTransitionName();
   };
   
 //   const closeModal = () => {

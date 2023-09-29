@@ -14,7 +14,7 @@ lazyLoad: {
   directiveOnly: false,
 
   // To remove class set value to false
-  loadingClass: 'isLoadingImage',
+  loadingClass: 'isLoading',
   loadedClass: 'isLoaded',
   appendClass: 'lazyLoad',
   

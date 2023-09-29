@@ -2,7 +2,7 @@
     <div class="cursor-default"
     :style="{ width: props.elementWidth + 'px' }"
     >
-      <img :src="post.image" class="image isLoadingImage" :style="{ height: props.imageHeight + 'px' }" />
+      <img :src="post.image" class="image isLoading" :style="{ height: props.imageHeight + 'px' }" />
       <div class="flex justify-between" :style="{ marginTop: props.authorTop + 'px' }">
         <div class="flex gap-1 items-center">
           <img

@@ -107,7 +107,11 @@ const fetchData = async () => {
 };
 
 onMounted(() => {
+  setTimeout(() => {
+
   fetchData();
+}, 100);
+
 });
 
 

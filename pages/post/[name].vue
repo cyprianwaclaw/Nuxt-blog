@@ -13,7 +13,7 @@
         <ButtonsSaved :id="post.id" :size="32" />
       </div>
       <PostSingleInfo :post="post" class="mt-[32px] mb-[46px]" />
-      <img :src="post.image" class="image isLoadingImage" />
+      <img :src="post.image" class="image isLoading" />
       <div v-for="(single, index) in post.content" :key="index">
         <p :class="single.class">{{ single.text }}</p>
       </div>

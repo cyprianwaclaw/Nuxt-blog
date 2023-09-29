@@ -3,117 +3,90 @@
     <Head>
       <Title>{{ currentAuthor?.full_name }}</Title>
     </Head>
-    <div>
-      <div v-if="currentAuthor?.avatar_url ? true : false">dsdsd</div>
-      <div v-else class="flex w-full justify-center">
-        <Icon
-          name="carbon:user-avatar-filled"
-          class="avatar"
-          color="#BFCBEE"
-          size="115"
-        />
-      </div>
-      <h1 class="text-[60px] text-center mt-3">{{ currentAuthor?.full_name }}</h1>
-    </div>
-
-    <NuxtLayout name="list" class="mt-[130px]">
+    <NuxtLayout name="list" class="mb-[230px]">
       <template #content>
-        <div class="w-full pr-28">
-          <h2>O autorze</h2>
-          <p class="font-light mt-3 text-[19px]">
-            {{ currentAuthor?.description }}
-          </p>
-          <h2 class="mt-[100px]">Ulubione tematy</h2>
-          <div class="flex gap-[15px] mt-5">
+        <div class="flex place-items-center gap-5 mb-[48px]">
+          <div v-if="currentAuthor?.avatar_url ? true : false">dsdsd</div>
+          <div v-else class="">
+            <Icon
+              name="carbon:user-avatar-filled"
+              class="avatar"
+              color="#BFCBEE"
+              size="84"
+            />
+          </div>
+          <h1>{{ currentAuthor?.full_name }}</h1>
+        </div>
+        <PostListAuthor />
+        <div class="w-full pr-28"></div>
+      </template>
+      <template #sidebar>
+        <div class="border-own py-7 mt-7">
+          <ButtonsFollower
+            :id="currentAuthor?.id"
+            :name="currentAuthor?.full_name"
+            :size="16"
+            :paddingX="18"
+            :paddingY="9"
+          />
+        </div>
+        <div class="border-own py-7 mt-7">
+          <h5>Ulubione tematy</h5>
+          <div class="flex flex-wrap gap-x-3 gap-y-3 mt-5">
             <LinkCategory
-              v-for="(single, index) in category"
+              v-for="(single, index) in popularCategories"
               :key="index"
               :name="single.name"
               :link="single.link"
-              :size="16"
-              :paddingX="18"
-              :paddingY="9"
             />
           </div>
         </div>
       </template>
-      <template #sidebar>
-        <ButtonsFollower
-        :id="currentAuthor?.id" 
-        :name="currentAuthor?.full_name"
-        :size="16"
-        :paddingX="18"
-        :paddingY="9"
-        />
-      </template>
     </NuxtLayout>
-    <div class="my-[100px]">
-      <div class="flex place-items-center gap-3">
-        <h2>Wszystkie artukuły</h2>
-        <div class="dot" />
-        <p class="gray text-[21px] mt-[1px]">
-          {{ currentAuthor?.number_article ? currentAuthor?.number_article : 0 }}
-        </p>
-      </div>
-      <div class="grid grid-cols-3 gap-[64px] mt-10 pb-[100px]">
-        <PostCardAuthor v-for="(post, index) in allArticle" :key="index" :post="post" />
-      </div>
-    </div>
   </div>
 </template>
 
 <script setup lang="ts">
 const supabase = useSupabaseClient();
 const router = useRouter();
-const currentAuthor = ref();
-const allArticle = ref([]) as any;
-const category = ref([]) as any;
-const findElement = ref([]) as any;
+const isLoading = ref(true);
+const popularCategories = ref([]) as any;
 
-onMounted(async () => {
-  const fetchAuthor = await supabase
-    .from("profiles")
-    .select("*")
-    .match({ link: router.currentRoute.value.params.name })
-    .single();
-  currentAuthor.value = fetchAuthor.data;
+const { data: currentAuthor } = (await supabase
+  .from("profiles")
+  .select("*")
+  .match({ link: router.currentRoute.value.params.name })
+  .single()) as any;
 
-  const fetchAuthorArticles = await supabase
-    .from("posts")
-    .select(
-      `
-      id,
-       title,
-       link,
-       created_at,
-         image,
-          category_id1(name, link),
-          category_id2(name, link),
-         description,
-        profiles(
-           full_name,
-           link,
-           avatar_url
-         )
-       `
-    )
-    .match({ user_id: currentAuthor.value.id });
-  allArticle.value = fetchAuthorArticles.data;
+// onMounted(async () => {
+  // setTimeout(async () => {
+    const categories = ref([]) as any;
 
-  allArticle.value.forEach((single: any) => {
-    let id1 = single.category_id1;
-    let id2 = single.category_id2;
-    category.value.push(id1, id2);
-  });
+    const { data: allPostCategories } = (await supabase
+      .from("posts")
+      .select(
+        `category_id1(name, link),
+         category_id2(name, link)`
+      )
+      .match({ user_id: currentAuthor.id })) as any;
 
-  category.value = category.value.filter((element: any) => {
-    if (!findElement[element.name]) {
-      findElement[element.name] = true;
-      return true;
-    }
-    return false;
-  });
-});
+    allPostCategories.forEach((single: any) => {
+      let id1 = single.category_id1;
+      let id2 = single.category_id2;
+      categories.value.push(id1, id2);
+    });
+
+    popularCategories.value = categories.value.filter((element: any) => {
+      if (!popularCategories[element.name]) {
+        popularCategories[element.name] = true;
+        return true;
+      }
+      return false;
+    });
+
+    isLoading.value = false;
+  // }, 1000);
+// });
 </script>
 
 <style scoped lang="scss">
@@ -123,5 +96,8 @@ onMounted(async () => {
   height: 6px;
   background-color: $gray;
   border-radius: 50%;
+}
+.border-own {
+  border-bottom: 1px solid $border;
 }
 </style>
