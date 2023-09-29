@@ -61,7 +61,7 @@ const change = () => {
   popular.value = !popular.value;
 };
 
-onMounted(async () => {
+// onMounted(async () => {
   // loadComponent("last");
 
   const fetchCategory = await supabase
@@ -71,7 +71,7 @@ onMounted(async () => {
     .single();
 
   currentCategory.value = fetchCategory.data;
-});
+// });
 const { data: categories } = (await supabase
   .from("categories")
   .select("*")

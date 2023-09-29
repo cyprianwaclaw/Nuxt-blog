@@ -97,7 +97,7 @@ const props = defineProps({
     required: false,
   },
 });
-
+const emit = defineEmits(['change'])
 const open = ref(false);
 const open2 = ref(false);
 const isModal = () => {
@@ -136,15 +136,23 @@ onMounted(async () => {
 });
 
 const changeFollow = (item: any) => {
+  // emit('change')
   if (text.value == "Obserwujesz") {
+    
     isModal2();
     text.value = "Obserwuj";
     unfollow(item);
   } else {
+    
     isModal();
     text.value = "Obserwujesz";
     follow(item);
   }
+  setTimeout(()=>{
+    emit('change')
+
+  }, 50)
+
 };
 
 const follow = async (item: any) => {

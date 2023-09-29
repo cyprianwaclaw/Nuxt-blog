@@ -110,7 +110,7 @@ onMounted(() => {
   setTimeout(() => {
 
   fetchData();
-}, 100);
+}, 400);
 
 });
 
@@ -145,7 +145,7 @@ const toggleSavedPost = async () => {
         const { data, error } = await supabase.from("saved_posts").insert(insertData);
         savedPost.value = true;
         isLoading.value = false;
-      }, 300);
+      }, 400);
       hoverIcon.value = false;
     }
   } else {

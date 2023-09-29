@@ -21,8 +21,25 @@
         <div class="w-full pr-28"></div>
       </template>
       <template #sidebar>
-        <div class="border-own py-7 mt-7">
+        <div class="border-own pb-7">
+          <div class="flex gap-8 h-[64px] mb-10">
+            <div class="">
+              <p class="gray text-[15px] text-center">Obserwujący</p>
+              <div v-if="isLoading">Ladowanie</div>
+              <p v-else class="text-[21px] font-medium text-center mt-1">
+                {{ userFollowed }}
+              </p>
+            </div>
+            <div class="">
+              <p class="gray text-[15px] text-center">Obserwowany</p>
+              <div v-if="isLoading">Ladowanie</div>
+              <p v-else class="text-[21px] font-medium text-center mt-1">
+                {{ userFollower }}
+              </p>
+            </div>
+          </div>
           <ButtonsFollower
+            @change="test"
             :id="currentAuthor?.id"
             :name="currentAuthor?.full_name"
             :size="16"
@@ -30,7 +47,10 @@
             :paddingY="9"
           />
         </div>
-        <div class="border-own py-7 mt-7">
+        <div class="border-own py-7">
+          <p>{{ currentAuthor?.number_article }} postów</p>
+        </div>
+        <div class="border-own py-7">
           <h5>Ulubione tematy</h5>
           <div class="flex flex-wrap gap-x-3 gap-y-3 mt-5">
             <LinkCategory
@@ -58,35 +78,59 @@ const { data: currentAuthor } = (await supabase
   .match({ link: router.currentRoute.value.params.name })
   .single()) as any;
 
-// onMounted(async () => {
-  // setTimeout(async () => {
-    const categories = ref([]) as any;
+const categories = ref([]) as any;
 
-    const { data: allPostCategories } = (await supabase
-      .from("posts")
-      .select(
-        `category_id1(name, link),
+const test = () => {
+  fetchUserFollowed();
+  fetchUserFollower();
+};
+
+const { data: allPostCategories } = (await supabase
+  .from("posts")
+  .select(
+    `category_id1(name, link),
          category_id2(name, link)`
-      )
-      .match({ user_id: currentAuthor.id })) as any;
+  )
+  .match({ user_id: currentAuthor.id })) as any;
 
-    allPostCategories.forEach((single: any) => {
-      let id1 = single.category_id1;
-      let id2 = single.category_id2;
-      categories.value.push(id1, id2);
-    });
+allPostCategories.forEach((single: any) => {
+  let id1 = single.category_id1;
+  let id2 = single.category_id2;
+  categories.value.push(id1, id2);
+});
 
-    popularCategories.value = categories.value.filter((element: any) => {
-      if (!popularCategories[element.name]) {
-        popularCategories[element.name] = true;
-        return true;
-      }
-      return false;
-    });
+popularCategories.value = categories.value.filter((element: any) => {
+  if (!popularCategories[element.name]) {
+    popularCategories[element.name] = true;
+    return true;
+  }
+  return false;
+});
 
-    isLoading.value = false;
-  // }, 1000);
-// });
+const userFollowed = ref();
+const userFollower = ref();
+
+const fetchUserFollowed = async () => {
+  const { data } = (await supabase
+    .from("followers")
+    .select("id")
+    .eq("user_followed_id", currentAuthor.id)) as any;
+  userFollowed.value = data.length;
+};
+
+const fetchUserFollower = async () => {
+  const { data } = (await supabase
+    .from("followers")
+    .select("id")
+    .eq("user_followers_id", currentAuthor.id)) as any;
+  userFollower.value = data.length;
+};
+
+onMounted(async () => {
+  fetchUserFollowed();
+  fetchUserFollower();
+  isLoading.value = false;
+});
 </script>
 
 <style scoped lang="scss">
