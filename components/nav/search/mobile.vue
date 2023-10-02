@@ -1,6 +1,6 @@
 <template>
     <div class="flex">
-<Icon name="ph:magnifying-glass" class="gray cursor-pointer" size="26" @click="isOpen()"/>
+<Icon name="ph:magnifying-glass-light" class="own-icon" size="26" @click="isOpen()"/>
 <div class="" v-if="open">
     dssd
 </div>
@@ -16,5 +16,9 @@ const isOpen = ()=>{
 
 <style scoped lang="scss">
 @import "@/assets/style/variables.scss";
-
+.own-icon{
+    color: rgb(172, 172, 172);
+    cursor: pointer;
+    
+}
 </style>
