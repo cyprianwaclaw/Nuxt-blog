@@ -1,5 +1,6 @@
 <template>
   <div>
+    <!-- {{ router.currentRoute.value.name }} -->
     <PostLatestPosts />
     <div class="flex flex-col cursor-default">
       <p class="text-[20px] gray">NOWOŚCI & AUTORZY</p>
@@ -44,6 +45,7 @@
 import { Swiper, SwiperSlide } from "swiper/vue";
 import "swiper/css";
 import "swiper/css/scrollbar";
+const router = useRouter();
 
 import { Scrollbar } from "swiper/modules";
 // const posts = ref()
