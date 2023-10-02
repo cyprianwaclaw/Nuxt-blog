@@ -1,6 +1,6 @@
 <template>
     <div class="flex">
-<Icon name="ph:magnifying-glass-light" class="own-icon" size="26" @click="isOpen()"/>
+<Icon name="ph:magnifying-glass-light" class="own-icon" size="28" @click="isOpen()"/>
 <div class="" v-if="open">
     dssd
 </div>

@@ -1,16 +1,15 @@
 <template>
   <div>
-    <!-- {{ router.currentRoute.value.name }} -->
     <PostLatestPosts />
-    <div class="flex flex-col cursor-default">
+    <!-- <div class="flex flex-col cursor-default">
       <p class="text-[20px] gray">NOWOŚCI & AUTORZY</p>
       <h1 class="mb-[80px] text-[64px] leading-[87px]">
         Najświeższe wpisy, <br />
         najbardziej aktywni twórcy
       </h1>
-    </div>
+    </div> -->
 
-    <div class="flex flex-row w-full gap-[110px]">
+    <!-- <div class="flex flex-row w-full gap-[110px]">
       <div class="w-[280px]">
         <div class="border-own  mb-3 ">
           <h5 class="mb-[5px]"> Popularne tematy</h5>
@@ -37,7 +36,7 @@
         <h1 class="mb-[42px] text-[64px] leading-[87px]">Wybrane dla Ciebie</h1>
         <LazyPostList class="mt-[70px]" />
       </div>
-    </div>
+    </div> -->
   </div>
 </template>
 

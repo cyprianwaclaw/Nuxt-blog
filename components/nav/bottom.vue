@@ -14,7 +14,7 @@
       >
         <Icon
           :name="isActive(single.link) ? single.icon_active : single.icon"
-          size="25"
+          size="28"
         />
         {{ single.name }}
       </NuxtLink>
@@ -127,10 +127,10 @@ const isActive = (link: string) => {
   color: rgb(172, 172, 172);
  // color: $gray;
   font-family: Jost;
-  font-size: 10px;
+  font-size: 11px;
   font-style: normal;
   font-weight: 400;
-  letter-spacing: 0.34px;
+  letter-spacing: 0.45px;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -142,5 +142,7 @@ const isActive = (link: string) => {
 
 .mobile-active {
   color: #5d9dd9;
+  font-weight: 500;
+
 }
 </style>

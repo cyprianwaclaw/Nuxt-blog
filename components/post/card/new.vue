@@ -2,7 +2,7 @@
     <div class="cursor-default"
     :style="{ width: props.elementWidth + 'px' }"
     >
-      <img :src="post.image" class="image isLoading" :style="{ height: props.imageHeight + 'px' }" />
+      <img :src="post.image" class="image isLoading" :style="{ height: props.imageHeight + 'px',  width: props.imageWidth + 'px'  }" />
       <div class="flex justify-between" :style="{ marginTop: props.authorTop + 'px' }">
         <div class="flex gap-1 items-center">
           <img
@@ -48,6 +48,7 @@
   const props = defineProps({
       post: Object as () => New,
     imageHeight: Number,
+    imageWidth: Number,
     elementWidth: Number,
     titleSize: Number,
     titleTop: Number,
@@ -70,7 +71,7 @@
   .image {
     border-radius: 14px;
     object-fit: cover;
-    width: 100%;
+   width: 100%;
     border: 1px solid $border;
 
   }

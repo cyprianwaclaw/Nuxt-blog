@@ -1,7 +1,22 @@
 <template>
     <div>
-      <!-- {{posts[0]}} -->
-      <div class="flex w-full mb-[200px]">
+      <div>
+        <p class="text-[19px] mb-[10px] mt-[2px]">Może Ci się spodobać</p>
+        <div class="flex w-full flex-row overflow-auto overflow-x-scroll scrollbar-hide">
+          <PostCardNew
+          v-for="(single, index) in posts" :key="index"
+          :post="single"
+          :imageHeight="280"
+          :imageWidth="300"
+          :titleTop="7"
+          :titleBottom="12"
+          :authorTop="12"
+          :desLength="250"
+          :isDescription="true"
+          />
+        </div>
+      </div>
+      <div class="md:flex w-full mb-[200px] hidden">
         <div class="w-[750px] pr-[50px]">
           <p class="text-[19px] mb-[10px] mt-[2px]">Może Ci się spodobać</p>
           <PostCardNew
@@ -14,7 +29,6 @@
             :isDescription="true"
           />
         </div>
-  
         <div class="grid grid-rows-2 w-[400px] pl-[50px] border-own gap-y-[40px]">
           <PostCardNew
             :post="posts[1]"
