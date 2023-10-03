@@ -1,6 +1,6 @@
 <template>
     <NavHeader/> 
-    <div class="lg:w-[1150px] md:mx-auto mx-5 md:pt-[130px] md:pb-[42px] pt-[72px]">
+    <div class="lg:w-[1150px] md:mx-auto mx-6 md:pt-[130px] md:pb-[42px] pt-[72px] pb-[120px]">
 <slot/>
 
 <NavBottom/>

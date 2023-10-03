@@ -14,7 +14,7 @@
       >
         <Icon
           :name="isActive(single.link) ? single.icon_active : single.icon"
-          size="28"
+          size="26"
         />
         {{ single.name }}
       </NuxtLink>

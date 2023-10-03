@@ -34,7 +34,7 @@
         <ButtonsFollower :id="profil.id" :name="profil.full_name" />
       </div>
     </div> -->
-    <div class="grid grid-cols-3 gap-[64px] mt-10 pb-[100px]">
+    <div class="md:grid md:grid-cols-3 gap-[64px] mt-10 md:pb-[100px]">
         <PostCardAuthor v-for="(post, index) in allArticle" :key="index" :post="post" />
       </div>
   </div>

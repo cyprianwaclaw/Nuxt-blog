@@ -1,36 +1,36 @@
 <template>
   <div>
     <PostLatestPosts />
-    <!-- <div class="flex flex-col cursor-default">
-      <p class="text-[20px] gray">NOWOŚCI & AUTORZY</p>
-      <h1 class="mb-[80px] text-[64px] leading-[87px]">
+
+ <div class="flex flex-col cursor-default">
+      <p class="md:text-[20px] md:font-normal gray text-[14px] font-light ">NOWOŚCI & AUTORZY</p>
+      <h1 class="md:mb-[80px] md:text-[64px] md:leading-[87px] text-[48px] leading-[58px] mt-[6px]">
         Najświeższe wpisy, <br />
         najbardziej aktywni twórcy
       </h1>
-    </div> -->
-
-    <!-- <div class="flex flex-row w-full gap-[110px]">
-      <div class="w-[280px]">
+    </div>
+     <div class="md:flex md:flex-row w-full md:gap-[110px] mt-8 md:mt-0">
+      <div class="md:w-[280px] w-full">
         <div class="border-own  mb-3 ">
           <h5 class="mb-[5px]"> Popularne tematy</h5>
         </div>
         <PostTableCategories />
       </div>
-      <div class="w-full">
+      <div class="w-full mt-8 md:mt-0">
         <div class="border-own mb-3 ">
           <h5 class="mb-[5px]">Autorzy</h5>
         </div>
-        <div class="flex gap-[70px] w-full">
+        <div class="flex w-full flex-col md:flex-row">
           <LazyPostTableUser />
-          <LazyPostTableUser />
+          <LazyPostTableUser class="md:flex hidden"/>
         </div>
       </div>
     </div>
-    <div class="border-own mt-16">
+  <div class="border-own md:mt-16 mt-8">
       <h5 class="mb-[5px]">Najświeższe wpisy</h5>
     </div>
     <PostTablePosts />
-    <div class="flex flex-row gap-[100px] pb-[250px] mt-[110px]">
+     <!--  <div class="flex flex-row gap-[100px] pb-[250px] mt-[110px]">
       <div class="flex flex-col cursor-default">
         <p class="text-[20px] gray">SPECJALNIE</p>
         <h1 class="mb-[42px] text-[64px] leading-[87px]">Wybrane dla Ciebie</h1>
