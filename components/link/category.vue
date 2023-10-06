@@ -13,8 +13,8 @@
     <p
       class="category-text"
       :class="[
-        props.size ? '' : 'text-[14px]',
-        props.paddingX && props.paddingY ? '' : 'px-[14px] py-[6px]',
+        props.size ? '' : 'text-[13px]',
+        props.paddingX && props.paddingY ? '' : 'px-[15px] py-[5px]',
       ]"
     >
       {{ props.name }}
@@ -77,6 +77,30 @@ const routerPush = () => {
   color: $text-black;
 }
 .button-category:hover{
+  color: $text-black;
+border: 1px solid $text-black;
+}
+
+.category-text1 {
+  color: #999999;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: 0.64px;
+}
+
+.button-category1 {
+  align-items: flex-start;
+  color: $text-gray;
+  border-radius: 35px;
+  background: #ECECEC;
+  font-family: $family;
+}
+
+.button-category1:hover > p{
+  color: $text-black;
+}
+.button-category1:hover{
   color: $text-black;
 border: 1px solid $text-black;
 }

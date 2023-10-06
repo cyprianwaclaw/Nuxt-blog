@@ -16,7 +16,7 @@
     <div v-if="user?.id == props?.id"></div>
     <div v-else>
       <div v-if="isLoading">
-        <button class="w-[120px] h-[34px] unactive-button loading-button">
+        <button class="md:w-[95px] h-[34px] unactive-button loading-button">
           <div strss="spinner-container">
             <svg
               class="spinner"
@@ -57,7 +57,7 @@
         <div v-else>
           <div v-if="user?.id == props?.id"></div>
           <div v-else>
-            <button @click="isModalAuth()" class="unactive-button w-[120px] h-[34px]">
+            <button @click="isModalAuth()" class="unactive-button md:w-[95px] h-[34px]">
               Obserwuj
             </button>
           </div>
@@ -83,19 +83,7 @@ const props = defineProps({
   name: {
     type: String,
     required: true,
-  },
-  size: {
-    type: Number,
-    required: false,
-  },
-  paddingX: {
-    type: Number,
-    required: false,
-  },
-  paddingY: {
-    type: Number,
-    required: false,
-  },
+  }
 });
 const emit = defineEmits(['change'])
 const open = ref(false);
@@ -218,7 +206,7 @@ $color: #5d9dd9;
   font-weight: 400;
   line-height: 20px; /* 166.667% */
   letter-spacing: 0.75px;
-  font-size: 13px;
+  font-size: 12px;
 }
 .unactive-button:hover {
   background-color: #1777d11c;
@@ -232,7 +220,7 @@ $color: #5d9dd9;
   font-weight: 400;
   line-height: 20px; /* 166.667% */
   letter-spacing: 0.75px;
-  font-size: 13px;
+  font-size: 12px;
 }
 .active-button:hover {
   background-color: #5494cf;

@@ -3,8 +3,11 @@
   <div class="w-full">
     <div v-if="isLoading">Czekam na dane...</div>
     <div v-else>
-      <div v-for="(profil, index) in profiles" :key="index" class="flex justify-between place-items-center w-full py-[20px] px-2"
-      :class="[index == profiles.length - 1 ? '': 'border-own']"
+      <div
+        v-for="(profil, index) in profiles"
+        :key="index"
+        class="flex justify-between place-items-center w-full py-[20px] px-2"
+        :class="[index == profiles.length - 1 ? '' : 'border-own']"
       >
         <div class="flex flex-row place-items-center">
           <div class="flex" v-if="profil.avatar_url">
@@ -14,17 +17,21 @@
             name="carbon:user-avatar-filled"
             class="avatar"
             color="#BFCBEE"
-            size="52"
+            size="50"
             v-else
           />
           <div class="flex flex-col ml-[13px]">
             <p class="text-[14px] gray">{{ profil.number_article }} artytułów</p>
             <NuxtLink :to="`autor/${profil.link}`">
-            <p class="text-[16px] family font-normal -mt-2 cursor-pointer hover:underline">{{ sliceText(profil.full_name, 15) }}</p>
+              <p
+                class="text-[16px] family font-normal  cursor-pointer hover:underline"
+              >
+                {{ sliceText(profil.full_name, 17) }}
+              </p>
             </NuxtLink>
           </div>
-          </div>
-          <ButtonsFollower :id="profil.id" :name="profil.full_name"/>
+        </div>
+        <ButtonsFollower :id="profil.id" :name="profil.full_name" />
       </div>
     </div>
   </div>
@@ -36,15 +43,9 @@ import { ref, onMounted } from "vue";
 const supabase = useSupabaseClient();
 const isLoading = ref(true);
 // let data:any = [];
-let profiles:any = [];
+let profiles: any = [];
 
 onMounted(async () => {
-  // Pobieranie danych followers
-  // const followersResponse = await supabase
-  //   .from("followers")
-  //   .select("user_followed_id, user_followers_id")
-  //   .eq("user_followed_id", user?.value?.id);
-
   // Pobieranie danych profili
   const profilesResponse = (await supabase
     .from("profiles")
@@ -52,7 +53,6 @@ onMounted(async () => {
     .limit(4)
     .order("number_article", { ascending: false })) as any;
 
-  // Przypisanie danych
   // data = followersResponse.data || [];
   profiles = profilesResponse.data || [];
 
@@ -64,7 +64,7 @@ onMounted(async () => {
 <style scoped lang="scss">
 @import "@/assets/style/variables.scss";
 
-.border-own{
-border-bottom: 1px solid $border;
+.border-own {
+  border-bottom: 1px solid $border;
 }
 </style>

@@ -2,7 +2,7 @@
   <ModalAccount :modalActive="isOpen" @close="isModal()" @logout="isLogout()" />
   <ModalAuth :modalActive="isAuth" @close="isModalAuth()" @logout="isLogout()" />
   <div
-    class="fixed flex md:hidden flex place-items-center flex-row justify-between w-full bg-white border-b border-gray-200 py-3 px-5"
+    class="fixed flex md:hidden flex place-items-center flex-row justify-between w-full bg-white border-b border-gray-200 py-3 px-5 z-20"
   >
     <NuxtLink to="/" class="flex shrink-0">
       <p class="text-[24px]">Nuxt3 Blog</p>
@@ -10,7 +10,6 @@
     <NavSearchMobile />
   </div>
   <div
-    class="flex place-items-center flex-row justify-between 2xl:mx-16 lg:mx-12 md:mx-12 mx-5 2xl:py-8 md:py-7 py-3"
   >
     <NuxtLink to="/" class="md:flex hidden shrink-0">
       <p class="flex title shrink-0">Nuxt3 Blog</p>

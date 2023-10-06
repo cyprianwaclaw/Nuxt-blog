@@ -1,12 +1,12 @@
 <template>
   <NuxtLayout name="list">
     <template #content>
-      <div v-for="(post, index) in posts" :key="index" class="grid grid-col">   
+      <div v-for="(post, index) in posts" :key="index" class="grid grid-col w-full">   
       <PostCardList 
       :post="post"
       :limit="2"
-      :class="[index !== posts.length -1 ? 'mb-[110px]' : 'mb-[42px]']"
       />
+      <!-- :class="[index !== posts.length -1 ? 'md:mb-[110px] mb-34px]' : 'md:mb-[42px]']" -->
     </div>
       </template>
       <template #sidebar>

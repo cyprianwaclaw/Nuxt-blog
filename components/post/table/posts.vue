@@ -2,39 +2,7 @@
 <template>
   <div  class="w-full">
     <div v-if="isLoading">Czekam na dane...</div>
-    <!-- <div v-else>
-      <div
-        v-for="(profil, index) in profiles"
-        :key="index"
-        class="flex justify-between place-items-center w-full py-[20px] px-2"
-        :class="[index == profiles.length - 1 ? '' : 'border-own']"
-      >
-        <div class="flex flex-row place-items-center">
-          <div class="flex" v-if="profil.avatar_url">
-            <img :src="profil.avatar_url" />
-          </div>
-          <Icon
-            name="carbon:user-avatar-filled"
-            class="avatar"
-            color="#BFCBEE"
-            size="52"
-            v-else
-          />
-          <div class="flex flex-col ml-[13px]">
-            <p class="text-[14px] gray">{{ profil.number_article }} artytułów</p>
-            <NuxtLink :to="`autor/${profil.link}`">
-              <p
-                class="text-[16px] family font-normal -mt-2 cursor-pointer hover:underline"
-              >
-                {{ sliceText(profil.full_name, 15) }}
-              </p>
-            </NuxtLink>
-          </div>
-        </div>
-        <ButtonsFollower :id="profil.id" :name="profil.full_name" />
-      </div>
-    </div> -->
-    <div class="md:grid md:grid-cols-3 gap-[64px] mt-10 md:pb-[100px]">
+    <div class="md:grid md:grid-cols-3 gap-x-[42px] gap-y-[64px] mt-10 md:pb-[100px]">
         <PostCardAuthor v-for="(post, index) in allArticle" :key="index" :post="post" />
       </div>
   </div>
