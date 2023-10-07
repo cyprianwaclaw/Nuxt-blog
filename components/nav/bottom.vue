@@ -1,48 +1,51 @@
 <template>
-  <div
-    class="md:hidden px-2 py-2 border-t border-gray-200 fixed left-0 bottom-0 z-20 grid grid-cols-4 w-full  bg-white justify-items-center"
-  >
+  <div class="absolute">
+
     <div
-      class="w-full grid justify-center"
-      v-for="(single, index) in MobileBottomNav"
-      :key="index"
+    class="md:hidden px-2 py-2 border-t border-gray-200 fixed left-0 bottom-0 z-20 grid grid-cols-4 w-full  bg-white justify-items-center"
+    >
+    <div
+    class="w-full grid justify-center"
+    v-for="(single, index) in MobileBottomNav"
+    :key="index"
     >
       <NuxtLink
-        :to="single.link"
-        class="mobile text-center"
-        :class="{ 'mobile-active': isActive(single.link) }"
+      :to="single.link"
+      class="mobile text-center"
+      :class="{ 'mobile-active': isActive(single.link) }"
       >
-        <Icon
-          :name="isActive(single.link) ? single.icon_active : single.icon"
-          size="26"
-        />
-        {{ single.name }}
-      </NuxtLink>
-    </div>
+      <Icon
+      :name="isActive(single.link) ? single.icon_active : single.icon"
+      size="26"
+      />
+      {{ single.name }}
+    </NuxtLink>
   </div>
-  <div class="md:grid grid-cols-4 cursor-default hidden">
-    <div class="flex flex-col">
-      <p class="text-[28px] font-medium">Nuxt3 Blog</p>
-      <div class="flex flex-col mt-[21px] gap-[8px] cursor-pointer">
-        <div class="flex place-items-center gap-[8px]">
-          <Icon name="ph:facebook-logo" size="28" />
-          <p class="text-[17px]">Facebook</p>
-        </div>
-        <div class="flex place-items-center gap-[8px] cursor-pointer">
-          <Icon name="ph:instagram-logo" size="28" />
-          <p class="text-[17px]">Instagram</p>
-        </div>
-        <div class="flex place-items-center gap-[8px] cursor-pointer">
-          <Icon name="ph:youtube-logo" size="28" />
-          <p class="text-[17px]">You Tube</p>
-        </div>
+</div>
+</div>
+<div class="md:grid grid-cols-4 cursor-default hidden">
+  <div class="flex flex-col">
+    <p class="text-[28px] font-medium">Nuxt3 Blog</p>
+    <div class="flex flex-col mt-[21px] gap-[8px] cursor-pointer">
+      <div class="flex place-items-center gap-[8px]">
+        <Icon name="ph:facebook-logo" size="28" />
+        <p class="text-[17px]">Facebook</p>
+      </div>
+      <div class="flex place-items-center gap-[8px] cursor-pointer">
+        <Icon name="ph:instagram-logo" size="28" />
+        <p class="text-[17px]">Instagram</p>
+      </div>
+      <div class="flex place-items-center gap-[8px] cursor-pointer">
+        <Icon name="ph:youtube-logo" size="28" />
+        <p class="text-[17px]">You Tube</p>
       </div>
     </div>
-    <div class="flex flex-col mr-[50px]">
-      <h5 class="mb-[10px]">Blog</h5>
-      <LinkHover
-        v-for="(link, index) in Blog"
-        :key="index"
+  </div>
+  <div class="flex flex-col mr-[50px]">
+    <h5 class="mb-[10px]">Blog</h5>
+    <LinkHover
+    v-for="(link, index) in Blog"
+    :key="index"
         class="mt-[5px] cursor-pointer"
         :name="link.name"
         :link="link.link"

@@ -1,7 +1,11 @@
 <template>
   <div class="flex gap-[8px]">
+  <!-- <div class="overflow-x-scroll space-x-5  absolute left-0 flex  whitespace-nowrap overflow-auto scrollbar-hide  -mt-12 border-b ml-10"> -->
+    <!-- <div
+    class="overflow-x-scroll space-x-5 w-11/12 absolute right-0 flex  whitespace-nowrap overflow-auto scrollbar-hide pr-10 border-b"
+  > -->
     <div
-      class="pb-[2px] px-4"
+      class="change-view"
       @click="lastButton()"
       :class="[last === true ? 'border-active' : '']"
     >
@@ -13,7 +17,7 @@
       </p>
     </div>
     <div
-      class="pb-[2px] px-4"
+      class="change-view"
       @click="popularButton()"
       :class="[popular === true ? 'border-active' : '']"
     >
@@ -26,7 +30,7 @@
     </div>
     <div
       :class="[topRating === true ? 'border-active' : '']"
-      class="pb-[2px] px-4"
+      class="change-view"
       @click="topRatingButton()"
     >
       <p
@@ -36,9 +40,9 @@
         O autorze
       </p>
     </div>
+    <hr />
   </div>
-  <hr />
-  <div class="mt-[50px]">
+  <div class="md:mt-[50px]">
     <div v-if="topRating">O autorze</div>
     <div v-else>
       <div v-if="isLoading">
@@ -47,7 +51,7 @@
       <div v-for="(post, index) in posts" :key="index" class="grid grid-col">
         <PostCardList
           :post="post"
-          :class="[index !== posts.length - 1 ? 'mb-[58px]' : 'mb-[42px]']"
+          :class="[index !== posts.length - 1 ? 'md:mb-[58px]' : 'md:mb-[42px]']"
         />
       </div>
     </div>
@@ -259,5 +263,10 @@ onBeforeRouteUpdate(async (to, from) => {
 }
 .active {
   color: $primary;
+}
+.change-view{
+  padding-bottom:2px;
+  padding: 0px 14px 6px 14px;
+
 }
 </style>

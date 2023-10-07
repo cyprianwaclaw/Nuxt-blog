@@ -10,6 +10,7 @@
     <NavSearchMobile />
   </div>
   <div
+  class="hidden md:flex flex place-items-center flex-row justify-between w-full bg-white py-7 px-10"
   >
     <NuxtLink to="/" class="md:flex hidden shrink-0">
       <p class="flex title shrink-0">Nuxt3 Blog</p>

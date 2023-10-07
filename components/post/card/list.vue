@@ -1,8 +1,8 @@
 <template>
-    <div class="cursor-default flex mt-[42px] justify-between">
+    <div class="cursor-default flex mt-[44px] justify-between">
       <div class="flex flex-col shrink-1 md:pr-[50px] w-full pr-5">
         <div class="flex place-items-content justify-between mb-[6px]">
-          <div class="flex gap-[6px] place-items-center md:mt-0 mt-1">
+          <div class="md:flex hidden gap-[6px] place-items-center md:mt-0 mt-1">
             <img
               v-if="post.profiles.avatar_url"
               :src="post.profiles.avatar_url"
@@ -18,6 +18,24 @@
             />
             <NuxtLink :to="`/autor/${post.profiles.link}`">
               <p class="md:text-[15px] family  hover:underline text-light text-[13px] -mt-1 md:mt-0">{{ post.profiles.full_name }}</p>
+            </NuxtLink>
+          </div>
+          <div class="flex md:hidden gap-[6px] place-items-center">
+            <img
+              v-if="post.profiles.avatar_url"
+              :src="post.profiles.avatar_url"
+              class="avatar isLoadingImage"
+              loading="lazy"
+            />
+            <Icon
+              v-else
+              name="carbon:user-avatar-filled"
+              class="-mt-1"
+              color="#BFCBEE"
+              size="19"
+            />
+            <NuxtLink :to="`/autor/${post.profiles.link}`">
+              <p class="family text-light text-[13px] -mt-1">{{ post.profiles.full_name }}</p>
             </NuxtLink>
           </div>
           <div class="md:flex hidden gray place-items-center md:gap-[15px]">
@@ -38,7 +56,6 @@
         </p>
         <div class="md:flex justify-between md:mt-[12px] mt-[7px]">
           <div class="hidden md:flex gap-[14px]">
-            <!-- {{ post.category_id2.link }} -->
             <LinkCategory :name="post.category_id2.name" :link="post.category_id2.link" />
             <LinkCategory :name="post.category_id1.name" :link="post.category_id1.link" />
           </div>
@@ -48,10 +65,8 @@
             <p class="text-[15px]">{{ calculateElapsedTime(post.created_at) }}</p>
           </div>
           <div class="flex md:hidden gray place-items-center justify-between">
-            <!-- <p class="text-[15px]">{{ post.time_read }} min</p> -->
-            <!-- <div class="dot" /> -->
-            <p class="text-[15px]">{{ calculateElapsedTime(post.created_at) }}</p>
-            <ButtonsSaved :id="post.id" :size="27"/>
+            <p class="text-[15px] font-regular">{{ calculateElapsedTime(post.created_at) }}</p>
+            <ButtonsSaved :id="post.id" :size="25"/>
           </div>
         </div>
       </div>
@@ -60,7 +75,6 @@
           :src="post.image"
           class="image isLoading"
           />
-          <!-- :style="{ height: props.imageHeight + 'px' }" -->
       </div>
     </div>
   </template>
@@ -101,6 +115,6 @@
     border-radius: 50%;
   }
   .gray {
-    color: $gray;
+    color: #777777;
   }
   </style>

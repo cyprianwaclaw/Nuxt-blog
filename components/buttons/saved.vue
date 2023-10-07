@@ -29,7 +29,7 @@ status="error"
     @click="toggleSavedPost"
     :name="savedPost ? 'ph:bookmark-simple-fill' : 'ph:bookmark-simple-light'"
     :size="props.size"
-    class="cursor-pointer text-[#C5C5C5]"
+    class="cursor-pointer text-[#A6A6A6]"
     :class="{
       'saved-hover': hoverIcon,
       'saved-selected': savedPost,
@@ -43,7 +43,7 @@ status="error"
     @click="isModalAuth"
     :name="savedPost ? 'ph:bookmark-simple-fill' : 'ph:bookmark-simple-light'"
     :size="props.size"
-    class="cursor-pointer text-[#C5C5C5]"
+    class="cursor-pointer text-[#A6A6A6]"
     :class="{
       'saved-hover': hoverIcon,
       'saved-selected': savedPost,

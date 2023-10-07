@@ -5,19 +5,19 @@
     </Head>
     <NuxtLayout name="list" class="mb-[230px]">
       <template #content>
-        <div class="flex place-items-center gap-5 mb-[48px]">
+        <div class="flex place-items-center gap-5 md:mb-[48px] mt-[32px] mb-[28px]">
           <div v-if="currentAuthor?.avatar_url ? true : false">dsdsd</div>
           <div v-else class="">
             <Icon
               name="carbon:user-avatar-filled"
               class="avatar"
               color="#BFCBEE"
-              size="84"
+              size="58"
             />
           </div>
-          <h1>{{ currentAuthor?.full_name }}</h1>
+          <h1 class="text-[28px] md:text-[48px]">{{ currentAuthor?.full_name }}</h1>
         </div>
-        <PostListAuthor />
+          <PostListAuthor />
         <div class="w-full pr-28"></div>
       </template>
       <template #sidebar>
@@ -131,6 +131,7 @@ onMounted(async () => {
   fetchUserFollower();
   isLoading.value = false;
 });
+
 </script>
 
 <style scoped lang="scss">
