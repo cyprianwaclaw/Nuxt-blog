@@ -43,7 +43,7 @@
                 <Icon name="ph:chat-circle-dots" size="24"/>
               <p class="text-[15px]">{{ post.time_read }} </p>
             </div>
-            <ButtonsSaved :id="post.id" :size="27"/>
+            <ButtonsSaved :id="post.id" :size="30"/>
           </div>
         </div>
         <NuxtLink :to="`/post/${post.link}`" class="cursor-pointer">

@@ -1,8 +1,7 @@
 <template>
   <div>
     <PostLatestPosts />
-
- <div class="flex flex-col cursor-default">
+ <div class="flex flex-col cursor-default md:mt-1 mt-[490px]">
       <p class="md:text-[20px] md:font-normal gray text-[14px] font-light ">NOWOŚCI & AUTORZY</p>
       <h1 class="md:mb-[80px] md:text-[64px] md:leading-[87px] text-[48px] leading-[58px] mt-[6px]">
         Najświeższe wpisy, <br />
@@ -40,7 +39,7 @@
         Wybrane wpisy, <br />
         specjalnie dla Ciebie
       </h1>
-        <LazyPostList class="mt-[70px]" />
+        <LazyPostList class="md:mt-[70px] mt-[8px]" />
       </div>
     </div>
   </div>

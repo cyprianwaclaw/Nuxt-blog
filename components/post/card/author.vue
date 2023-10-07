@@ -1,5 +1,5 @@
 <template>
-  <div class="cursor-default h-[425px] relative">
+  <div class="cursor-default md:h-[425px] relative">
     <img :src="post.image" class="image isLoading" />
     <div class="flex justify-between mt-[10px] mb-[7px]">
       <div class="flex gap-[6px] items-center">
@@ -20,7 +20,7 @@
           <p class="text-sm hover:underline">{{ post.profiles.full_name }}</p>
         </NuxtLink>
       </div>
-      <ButtonsSaved :size="27" :id="post.id "/>
+      <ButtonsSaved :size="30" :id="post.id "/>
     </div>
     <NuxtLink :to="`/post/${post.link}`" class="cursor-pointer">
       <h3 class="hover:underline">
@@ -28,7 +28,7 @@
       </h3></NuxtLink
     >
     <p class="des mt-[6px]">{{ sliceText(post.description, 150) }}</p>
-    <div class="absolute bottom-0 w-full flex justify-between place-items-center">
+    <div class="md:absolute bottom-0 w-full flex justify-between place-items-center mt-4 md:mt-0 md:mb-0">
 <div class="gap-[12px] flex">
   <LinkCategory :name="post.category_id1.name" :link="post.category_id1.link"/>
   <LinkCategory :name="post.category_id2.name" :link="post.category_id2.link"/>

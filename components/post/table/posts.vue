@@ -2,8 +2,8 @@
 <template>
   <div  class="w-full">
     <div v-if="isLoading">Czekam na dane...</div>
-    <div class="md:grid md:grid-cols-3 gap-x-[42px] gap-y-[64px] mt-10 md:pb-[100px]">
-        <PostCardAuthor v-for="(post, index) in allArticle" :key="index" :post="post" />
+    <div class="md:grid md:grid-cols-3 gap-x-[42px] gap-y-[44px] mt-10 md:pb-[100px]">
+        <PostCardAuthor v-for="(post, index) in allArticle" :key="index" :post="post" class="mt-14"/>
       </div>
   </div>
 </template>
