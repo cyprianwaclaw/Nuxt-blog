@@ -1,5 +1,5 @@
 <template>
-    <div class="cursor-default flex mt-[44px] justify-between">
+    <div class="cursor-default flex justify-between">
       <div class="flex flex-col shrink-1 md:pr-[50px] w-full pr-5">
         <div class="flex place-items-content justify-between mb-[6px]">
           <div class="md:flex hidden gap-[6px] place-items-center md:mt-0 mt-1">
@@ -43,7 +43,7 @@
                 <Icon name="ph:chat-circle-dots" size="24"/>
               <p class="text-[15px]">{{ post.time_read }} </p>
             </div>
-            <ButtonsSaved :id="post.id" :size="30"/>
+            <!-- <ButtonsSaved :id="post.id" :size="30"/> -->
           </div>
         </div>
         <NuxtLink :to="`/post/${post.link}`" class="cursor-pointer">
@@ -66,7 +66,7 @@
           </div>
           <div class="flex md:hidden gray place-items-center justify-between">
             <p class="text-[15px] font-regular">{{ calculateElapsedTime(post.created_at) }}</p>
-            <ButtonsSaved :id="post.id" :size="25"/>
+            <!-- <ButtonsSaved :id="post.id" :size="25"/> -->
           </div>
         </div>
       </div>

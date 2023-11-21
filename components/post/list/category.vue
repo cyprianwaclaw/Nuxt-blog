@@ -33,18 +33,20 @@
       </div>
     </div>
     <hr />
-    <div class="mt-[50px]">
-  
+    <pre>
+      {{posts}}
+    </pre>
+    <!-- <div class="mt-[50px]">  
       <div v-if="isLoading">
         <PostListSkeleton />
       </div>
       <div v-for="(post, index) in posts" :key="index" class="grid grid-col">
-        <PostCardList
+     <PostCardList
         :post="post"
-        :class="[index !== posts.length - 1 ? 'mb-[58px]' : 'mb-[42px]']"
+        :class="[index !== posts.length - 1 ? 'mb-[50px]' : 'mb-[42px]']"
         />
       </div>
-    </div>
+    </div> -->
   </template>
   
   <script setup lang="ts">
@@ -73,79 +75,79 @@
   };
   
   
-  onMounted(async () => {
-  setTimeout(async () => {
-    let { data } = (await supabase
-      .from("posts")
-      .select(
-        `
-      id,
-      title,
-      link,
-      created_at,
-      image,
-      time_read,
-      category_id1(name, link),
-      category_id2(name, link),
-      description,
-      profiles(
-        full_name,
-        link,
-        avatar_url
-        )
-        `
-      )
-      .order("created_at", { ascending: false })
-      .limit(6)) as any;
+  // onMounted(async () => {
+  // setTimeout(async () => {
+  //   let { data } = (await supabase
+  //     .from("posts")
+  //     .select(
+  //       `
+  //     id,
+  //     title,
+  //     link,
+  //     created_at,
+  //     image,
+  //     time_read,
+  //     category_id1(name, link),
+  //     category_id2(name, link),
+  //     description,
+  //     profiles(
+  //       full_name,
+  //       link,
+  //       avatar_url
+  //       )
+  //       `
+  //     )
+  //     .order("created_at", { ascending: false })
+  //     .limit(6)) as any;
   
-    posts.value = data;
-    isLoading.value = false;
-  }, 200);
-  })
+  //   posts.value = data;
+  //   isLoading.value = false;
+  // }, 200);
+  // })
   
   
-  watch(popular, (newValue)=>{
-    if(newValue == true){
-      isLoading.value = true;
-    last.value = false
-    popular.value = true
-    topRating.value = false
-    setTimeout(async () => {
-      let { data } = (await supabase
-        .from("posts")
-        .select(
-          `
-      id,
-      title,
-      link,
-      created_at,
-      image,
-      time_read,
-      category_id1(name, link),
-      category_id2(name, link),
-      description,
-      profiles(
-        full_name,
-        link,
-        avatar_url
-        )
-        `
-        )
-        .order("created_at", { ascending: true })
-        .limit(6)) as any;
+  // watch(popular, (newValue)=>{
+  //   if(newValue == true){
+  //     // isLoading.value = true;
+  //   last.value = false
+  //   popular.value = true
+  //   topRating.value = false
+  //   setTimeout(async () => {
+  //     let { data } = (await supabase
+  //       .from("posts")
+  //       .select(
+  //         `
+  //     id,
+  //     title,
+  //     link,
+  //     created_at,
+  //     image,
+  //     time_read,
+  //     category_id1(name, link),
+  //     category_id2(name, link),
+  //     description,
+  //     profiles(
+  //       full_name,
+  //       link,
+  //       avatar_url
+  //       )
+  //       `
+  //       )
+  //       .order("created_at", { ascending: true })
+  //       .limit(6)) as any;
   
-      posts.value = data;
-      isLoading.value = false;
-    }, 200);
-    // isLoading.value = true;
-    // loadComponent("popular");
-    router.push({ query: { p: "popular" } });
-    }
-  })
+  //     posts.value = data;
+  //     // isLoading.value = false;
+  //   }, 200);
+  //   // isLoading.value = true;
+  //   // loadComponent("popular");
+  //   router.push({ query: { p: "popular" } });
+  //   }
+  // })
   
   watch(last, (newValue)=>{
     if(newValue == true){
-      isLoading.value = true;
+      // isLoading.value = true;
     last.value =  true
     popular.value =  false
     topRating.value = false
@@ -174,7 +176,7 @@
         .limit(6)) as any;
   
       posts.value = data;
-      isLoading.value = false;
+      // isLoading.value = false;
     }, 400);
     // isLoading.value = true;
     // loadComponent("popular");
@@ -185,7 +187,7 @@
   
   watch(topRating, (newValue)=>{
     if(newValue == true){
-      isLoading.value = true;
+      // isLoading.value = true;
     last.value =  false
     popular.value =  false
     topRating.value = true
@@ -214,7 +216,7 @@
         .limit(6)) as any;
   
       posts.value = data;
-      isLoading.value = false;
+      // isLoading.value = false;
     }, 200);
     // isLoading.value = true;
     // loadComponent("popular");

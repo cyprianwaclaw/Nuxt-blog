@@ -72,10 +72,10 @@ const change = () => {
 
   currentCategory.value = fetchCategory.data;
 // });
-const { data: categories } = (await supabase
-  .from("categories")
-  .select("*")
-  .limit(5)) as any;
+// const { data: categories } = (await supabase
+//   .from("categories")
+//   .select("*")
+//   .limit(5)) as any;
 
 const { data: users } = (await supabase
   .from("profiles")
@@ -83,12 +83,12 @@ const { data: users } = (await supabase
   // dodac osbsługe tematów
   .limit(5)) as any;
 
-const { data: recommended } = (await supabase
-  .from("posts")
-  .select("link, image, title")
-  // dodac osbsługe tematów
-  .limit(5)) as any;
-</script>
+// const { data: recommended } = (await supabase
+//   .from("posts")
+//   .select("link, image, title")
+//   // dodac osbsługe tematów
+//   .limit(5)) as any;
+// </script>
 
 <style scoped lang="scss">
 @import "@/assets/style/variables.scss";
